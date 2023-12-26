@@ -14,5 +14,5 @@ Cargo.lock
 *.pdb
 
 # ignore executables
-server
-client
+/client
+/server
