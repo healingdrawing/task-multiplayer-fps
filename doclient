@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# dive into client source code folder
+cd mw/client
+
+# build release executable
+cargo build --release
+
+# jump up to root folder
+cd ../..
+
+# copy release executable to the root folder level with nice name
+cp ./mw/client/target/release/client ./client
