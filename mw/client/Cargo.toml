@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 bevy = "0.12.1"
+bevy_ui = "0.12.1"
+bevy_text = "0.12.1"
+bevy_simple_text_input = "0.3.1"
