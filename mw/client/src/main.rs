@@ -11,7 +11,7 @@ fn main() {
               resizable: false,
               resolution: (1000., 1000.).into(),
               title: "asspain + headache + brainfuck".into(),
-              enabled_buttons: bevy::window::EnabledButtons{ maximize: false, ..default() },
+              // enabled_buttons: bevy::window::EnabledButtons{ maximize: false, ..default() },
               ..default()
             }
           ),
@@ -22,7 +22,8 @@ fn main() {
       FrameTimeDiagnosticsPlugin,
     )
     
-  ).add_systems(
+  ).insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)))
+  .add_systems(
     Update,
     (
       change_title,
