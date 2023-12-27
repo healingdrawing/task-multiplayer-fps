@@ -6,7 +6,7 @@ The retro game "Maze Wars" reimplementation using the [rust](https://www.rust-la
 For details see [task and audit questions](https://github.com/01-edu/public/tree/master/subjects/multiplayer-fps).  
 
 ## Requirements
-- properly installed [rust](https://www.rust-lang.org). Version `1.71.1` used for development.  
+- properly installed [rust](https://www.rust-lang.org). Version `1.74.1` used for development.  
 
 
 ## How to run
