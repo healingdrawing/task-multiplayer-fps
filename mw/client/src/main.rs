@@ -1,4 +1,6 @@
-use bevy::{prelude::*, diagnostic::{LogDiagnosticsPlugin, FrameTimeDiagnosticsPlugin}} ;
+use bevy::{prelude::*, diagnostic::{LogDiagnosticsPlugin, FrameTimeDiagnosticsPlugin, DiagnosticsStore}} ;
+use bevy_egui::{egui::{self, Align2, RichText, Color32, FontId}, EguiPlugin, EguiContexts};
+
 
 fn main() {
   App::new()
@@ -18,20 +20,51 @@ fn main() {
           ..default()
         }
       ),
+      EguiPlugin,
       LogDiagnosticsPlugin::default(),
-      FrameTimeDiagnosticsPlugin,
+      FrameTimeDiagnosticsPlugin::default(),
     )
     
-  ).insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)))
+  )
+  .insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)))
+  
   .add_systems(
     Update,
     (
+      update_fps_ui,
       change_title,
       toggle_window_controls,
     )
   )
   .run();
 }
+
+/// Marker to find the text entity so we can update it
+#[derive(Component)]
+struct FpsText;
+
+fn update_fps_ui(
+  mut contexts: EguiContexts,
+  diagnostics: Res<DiagnosticsStore>,
+) {
+  let fps = match diagnostics
+  .get(FrameTimeDiagnosticsPlugin::FPS)
+  .and_then(|fps| fps.smoothed()){
+    Some(v) => v.to_string(),
+    None => "N/A".to_string()
+  };
+  
+  egui:: Area::new("fps")
+  .anchor(Align2::CENTER_TOP, (0., 25.))
+  .show(contexts.ctx_mut(), |ui| {
+    ui.label(
+      RichText::new(format!("{}",fps))
+      .color(Color32::WHITE)
+      .font(FontId::proportional(72.0)),
+    );
+  });
+}
+
 
 fn toggle_window_controls(input: Res<Input<KeyCode>>, mut windows: Query<&mut Window>) {
   let toggle_minimize = input.just_pressed(KeyCode::Key1);
