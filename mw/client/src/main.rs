@@ -1,6 +1,11 @@
-use bevy::{prelude::*, diagnostic::{LogDiagnosticsPlugin, FrameTimeDiagnosticsPlugin, DiagnosticsStore}} ;
-use bevy_egui::{egui::{self, Align2, RichText, Color32, FontId}, EguiPlugin, EguiContexts};
+// use bevy::diagnostic::LogDiagnosticsPlugin; // to print fps in terminal
+use bevy::prelude::*;
+use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
+use bevy_egui::EguiPlugin;
 
+mod gui;
+use gui::title::show_time::change_window_title;
+use gui::fps::show_fps::show_fps_ui;
 
 fn main() {
   App::new()
@@ -10,10 +15,9 @@ fn main() {
         WindowPlugin {
           primary_window: Some(
             Window {
-              resizable: false,
+              // resizable: false, // it is dead, official bug for x11/macos
               resolution: (1000., 1000.).into(),
               title: "asspain + headache + brainfuck".into(),
-              // enabled_buttons: bevy::window::EnabledButtons{ maximize: false, ..default() },
               ..default()
             }
           ),
@@ -21,48 +25,22 @@ fn main() {
         }
       ),
       EguiPlugin,
-      LogDiagnosticsPlugin::default(),
+      // LogDiagnosticsPlugin::default(), // to print fps in terminal
       FrameTimeDiagnosticsPlugin::default(),
     )
     
   )
-  .insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)))
+  // .insert_resource(ClearColor(Color::rgb(1.0, 0.0, 0.0))) // it is dead/black
   
   .add_systems(
     Update,
     (
-      update_fps_ui,
-      change_title,
+      show_fps_ui,
+      change_window_title,
       toggle_window_controls,
     )
   )
   .run();
-}
-
-/// Marker to find the text entity so we can update it
-#[derive(Component)]
-struct FpsText;
-
-fn update_fps_ui(
-  mut contexts: EguiContexts,
-  diagnostics: Res<DiagnosticsStore>,
-) {
-  let fps = match diagnostics
-  .get(FrameTimeDiagnosticsPlugin::FPS)
-  .and_then(|fps| fps.smoothed()){
-    Some(v) => v.to_string(),
-    None => "N/A".to_string()
-  };
-  
-  egui:: Area::new("fps")
-  .anchor(Align2::CENTER_TOP, (0., 25.))
-  .show(contexts.ctx_mut(), |ui| {
-    ui.label(
-      RichText::new(format!("{}",fps))
-      .color(Color32::WHITE)
-      .font(FontId::proportional(72.0)),
-    );
-  });
 }
 
 
@@ -73,7 +51,7 @@ fn toggle_window_controls(input: Res<Input<KeyCode>>, mut windows: Query<&mut Wi
   
   if toggle_minimize || toggle_maximize || toggle_close {
     let mut window = windows.single_mut();
-    
+    println!("1 or 2 or 3 pressed. not numpad");
     if toggle_minimize {
       window.enabled_buttons.minimize = !window.enabled_buttons.minimize;
     }
@@ -84,13 +62,4 @@ fn toggle_window_controls(input: Res<Input<KeyCode>>, mut windows: Query<&mut Wi
       window.enabled_buttons.close = !window.enabled_buttons.close;
     }
   }
-}
-
-/// This system will then change the title during execution
-fn change_title(mut windows: Query<&mut Window>, time: Res<Time>) {
-  let mut window = windows.single_mut();
-  window.title = format!(
-    "Seconds since startup: {}",
-    time.elapsed().as_secs_f32().round()
-  );
 }
