@@ -10,22 +10,22 @@ use gui::fps::show_fps::show_fps_ui;
 mod keyboard;
 use keyboard::activity::listen_keys;
 
+mod user;
+use user::info;
+
+mod connection;
+use connection::connect;
+
 /// it is a client for the server
 fn main() {
+  let server_address = info::get_server_address();
+  let user_name = info::get_user_name();
+  if let Err(error) = connect::connect_to(&server_address, &user_name) {
+    println!("Connection error: {}", error);
+    return;
+  }
   
-  // placeholder:
-  // for request the server ip:port from user terminal input, and store it in the variable
-  // only numbers , dots and colon allowed, otherwise print error and loop again to collect the ip:port
-
-  // placehoder:
-  // for request the user name from user terminal input, and store it in the variable
-  // only the english letters and the numbers are allowed, otherwise print error message and loop again to collect the name
-
-  // placehoder:
-  // after collecting the ip:port and the name, try to connect to the server
-  // if connection is not successful/fail, then print error message and loop again to collect the ip:port and the name
-
-  // if connection is successful, then start the game
+  // if connection is successful, then start the game. Very raw
 
   App::new()
   .add_plugins(
@@ -34,9 +34,8 @@ fn main() {
         WindowPlugin {
           primary_window: Some(
             Window {
-              // resizable: false, // it is dead, official bug for x11/macos
               resolution: (1000., 1000.).into(),
-              title: "asspain + headache + brainfuck".into(),
+              title: "Thank you for your help! I want to complete it before February".into(),
               ..default()
             }
           ),
@@ -60,6 +59,6 @@ fn main() {
     )
   )
   .run();
-
-  // placeholder for game over, just close the window and/or exit. Not sure how make it the best way
+  
+  // placeholder for game over. Probably just close the window and/or exit. Not sure how make it the best way
 }
