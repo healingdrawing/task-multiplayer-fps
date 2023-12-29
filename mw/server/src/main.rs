@@ -56,7 +56,7 @@ fn main() {
   }
   
   // if connection is successful, then start the game. Very raw
-
+  
   App::new()
   .add_plugins(
     (
@@ -96,11 +96,14 @@ fn main() {
 
 #[tokio::main]
 async fn main() {
-    let cli = Cli::parse();
-    let mut app = App::new();
-    setup(&mut app, cli);
-
-    app.run();
+  let (ip, port) = info::get_server_address();
+  let name = info::get_creature_name();
+  
+  let cli = Cli::parse();
+  let mut app = App::new();
+  setup(&mut app, cli);
+  
+  app.run();
 }
 
 // Use a port of 0 to automatically select a port
@@ -112,91 +115,91 @@ pub const KEY: Key = [0; 32];
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 pub enum Transports {
-    Udp,
-    Webtransport,
+  Udp,
+  Webtransport,
 }
 
 #[derive(Parser, PartialEq, Debug)]
 enum Cli {
-    SinglePlayer,
-    Server {
-        #[arg(long, default_value = "false")]
-        headless: bool,
-
-        #[arg(short, long, default_value = "false")]
-        inspector: bool,
-
-        #[arg(short, long, default_value_t = SERVER_PORT)]
-        port: u16,
-
-        #[arg(short, long, value_enum, default_value_t = Transports::Udp)]
-        transport: Transports,
-    },
-    Client {
-        #[arg(short, long, default_value = "false")]
-        inspector: bool,
-
-        #[arg(short, long, default_value_t = 0)]
-        client_id: u16,
-
-        #[arg(long, default_value_t = CLIENT_PORT)]
-        client_port: u16,
-
-        #[arg(long, default_value_t = Ipv4Addr::LOCALHOST)]
-        server_addr: Ipv4Addr,
-
-        #[arg(short, long, default_value_t = SERVER_PORT)]
-        server_port: u16,
-
-        #[arg(short, long, value_enum, default_value_t = Transports::Udp)]
-        transport: Transports,
-    },
+  SinglePlayer,
+  Server {
+    #[arg(long, default_value = "false")]
+    headless: bool,
+    
+    #[arg(short, long, default_value = "false")]
+    inspector: bool,
+    
+    #[arg(short, long, default_value_t = SERVER_PORT)]
+    port: u16,
+    
+    #[arg(short, long, value_enum, default_value_t = Transports::Udp)]
+    transport: Transports,
+  },
+  Client {
+    #[arg(short, long, default_value = "false")]
+    inspector: bool,
+    
+    #[arg(short, long, default_value_t = 0)]
+    client_id: u16,
+    
+    #[arg(long, default_value_t = CLIENT_PORT)]
+    client_port: u16,
+    
+    #[arg(long, default_value_t = Ipv4Addr::LOCALHOST)]
+    server_addr: Ipv4Addr,
+    
+    #[arg(short, long, default_value_t = SERVER_PORT)]
+    server_port: u16,
+    
+    #[arg(short, long, value_enum, default_value_t = Transports::Udp)]
+    transport: Transports,
+  },
 }
 
 fn setup(app: &mut App, cli: Cli) {
-    match cli {
-        Cli::SinglePlayer => {}
-        Cli::Server {
-            headless,
-            inspector,
-            port,
-            transport,
-        } => {
-            let server_plugin = MyServerPlugin {
-                headless,
-                port,
-                transport,
-            };
-            if !headless {
-                app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
-            } else {
-                app.add_plugins(MinimalPlugins);
-            }
-            if inspector {
-                app.add_plugins(WorldInspectorPlugin::new());
-            }
-            app.add_plugins(server_plugin);
-        }
-        Cli::Client {
-            inspector,
-            client_id,
-            client_port,
-            server_addr,
-            server_port,
-            transport,
-        } => {
-            let client_plugin = MyClientPlugin {
-                client_id: client_id as ClientId,
-                client_port,
-                server_addr,
-                server_port,
-                transport,
-            };
-            app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
-            if inspector {
-                app.add_plugins(WorldInspectorPlugin::new());
-            }
-            app.add_plugins(client_plugin);
-        }
+  match cli {
+    Cli::SinglePlayer => {}
+    Cli::Server {
+      headless,
+      inspector,
+      port,
+      transport,
+    } => {
+      let server_plugin = MyServerPlugin {
+        headless,
+        port,
+        transport,
+      };
+      if !headless {
+        app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
+      } else {
+        app.add_plugins(MinimalPlugins);
+      }
+      if inspector {
+        app.add_plugins(WorldInspectorPlugin::new());
+      }
+      app.add_plugins(server_plugin);
     }
+    Cli::Client {
+      inspector,
+      client_id,
+      client_port,
+      server_addr,
+      server_port,
+      transport,
+    } => {
+      let client_plugin = MyClientPlugin {
+        client_id: client_id as ClientId,
+        client_port,
+        server_addr,
+        server_port,
+        transport,
+      };
+      app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
+      if inspector {
+        app.add_plugins(WorldInspectorPlugin::new());
+      }
+      app.add_plugins(client_plugin);
+    }
+  }
 }
