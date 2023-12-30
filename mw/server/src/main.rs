@@ -96,10 +96,32 @@ fn main() {
 
 #[tokio::main]
 async fn main() {
-  let (ip, port) = info::get_server_address();
+  let (ip, the_port) = info::get_server_address();
   let name = info::get_creature_name();
+  let id = info::mutate_to_id(&name);
   
-  let cli = Cli::parse();
+  let mut cli = Cli::parse();
+
+  // As audit questions require, set ip:port, from the user terminal input steps.
+  // It is not my initiative. Flags using at least looks easy for scripting.
+  match &mut cli {
+    Cli::Server { port  , .. } => {
+      *port = the_port;
+      println!("Server is running on {}:{}...", ip, port);
+    },
+    Cli::Client {client_id, server_addr, server_port, .. } => {
+      *client_id = id;
+      *server_addr = ip;
+      *server_port = the_port;
+      println!(
+        "Client \"{}\" with id \"{}\" is trying to call {}:{}...",
+        name, id,
+        server_addr, server_port
+      );
+    },
+    _ => {},
+  }
+
   let mut app = App::new();
   setup(&mut app, cli);
   

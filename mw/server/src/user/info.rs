@@ -70,7 +70,9 @@ pub fn get_server_address() -> (Ipv4Addr, u16) {
 pub fn get_creature_name() -> String {
   let mut input = String::new();
   loop {
-    print!("Enter short name (English letters and numbers only): ");
+    println!(
+      "====================================== \n=      Enter unique short name       = \n= (English letters and numbers only) = \n====================================== \n= The name used to create client id. = \n= If connection is timed out         = \n= and ip:port pair is correct        = \n= then try to change the name.       = \n======================================"
+    );
     io::stdout().flush().unwrap();
     io::stdin().read_line(&mut input).unwrap();
     input = input.trim().to_string();
@@ -88,4 +90,15 @@ pub fn get_creature_name() -> String {
       input.clear()
     }
   }
+}
+
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+
+pub fn mutate_to_id(name: &str) -> u16 {
+    let mut hasher = DefaultHasher::new();
+    name.hash(&mut hasher);
+    let hash_value = hasher.finish();
+    let id = hash_value as u16;
+    id
 }
