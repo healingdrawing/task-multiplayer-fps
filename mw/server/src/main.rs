@@ -45,55 +45,8 @@ use crate::client::MyClientPlugin;
 use crate::server::MyServerPlugin;
 use lightyear::netcode::{ClientId, Key};
 use lightyear::prelude::TransportConfig;
-/* 
-/// it is a hybrid client or server
-fn main() {
-  let server_address = info::get_server_address();
-  let name = info::get_user_name();
-  if let Err(error) = connect::connect_to(&server_address, &name) {
-    println!("Connection error: {}", error);
-    return;
-  }
-  
-  // if connection is successful, then start the game. Very raw
-  
-  App::new()
-  .add_plugins(
-    (
-      DefaultPlugins.set(
-        WindowPlugin {
-          primary_window: Some(
-            Window {
-              resolution: (1000., 1000.).into(),
-              title: "Thank you for your help! I want to complete it before February".into(),
-              ..default()
-            }
-          ),
-          ..default()
-        }
-      ),
-      EguiPlugin,
-      // LogDiagnosticsPlugin::default(), // to print fps in terminal
-      FrameTimeDiagnosticsPlugin::default(),
-    )
-    
-  )
-  // .insert_resource(ClearColor(Color::rgb(1.0, 0.0, 0.0))) // it is dead/black
-  
-  .add_systems(
-    Update,
-    (
-      show_fps_ui,
-      change_window_title,
-      listen_keys,
-    )
-  )
-  .run();
-  
-  // placeholder for game over. Probably just close the window and/or exit. Not sure how make it the best way
-}
-*/
 
+/// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
   let (ip, the_port) = info::get_server_address();
@@ -101,7 +54,7 @@ async fn main() {
   let id = info::mutate_to_id(&name);
   
   let mut cli = Cli::parse();
-
+  
   // As audit questions require, set ip:port, from the user terminal input steps.
   // It is not my initiative. Flags using at least looks easy for scripting.
   match &mut cli {
@@ -121,10 +74,10 @@ async fn main() {
     },
     _ => {},
   }
-
+  
   let mut app = App::new();
   
-  // fps on screen etc. Later can move to setup(), when it will be more clear
+  // INJECTION fps on screen etc. Later can move to setup(), when it will be more clear
   app.add_plugins((
     DefaultPlugins.set(
       WindowPlugin {
@@ -139,9 +92,10 @@ async fn main() {
       }
     ),
     EguiPlugin,
-      // LogDiagnosticsPlugin::default(), // to print fps in terminal
-      FrameTimeDiagnosticsPlugin::default(),
+    // LogDiagnosticsPlugin::default(), // to print fps in terminal
+    FrameTimeDiagnosticsPlugin::default(),
   ));
+  app.insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)));
   app.add_systems(
     Update,
     (
@@ -150,7 +104,7 @@ async fn main() {
       // listen_keys,
     )
   );
-
+  
   setup(&mut app, cli);
   
   app.run();
