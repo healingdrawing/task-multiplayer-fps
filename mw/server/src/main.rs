@@ -123,6 +123,34 @@ async fn main() {
   }
 
   let mut app = App::new();
+  
+  // fps on screen etc. Later can move to setup(), when it will be more clear
+  app.add_plugins((
+    DefaultPlugins.set(
+      WindowPlugin {
+        primary_window: Some(
+          Window {
+            resolution: (1000., 1000.).into(),
+            title: "Thank you for your help! I want to complete it before February".into(),
+            ..default()
+          }
+        ),
+        ..default()
+      }
+    ),
+    EguiPlugin,
+      // LogDiagnosticsPlugin::default(), // to print fps in terminal
+      FrameTimeDiagnosticsPlugin::default(),
+  ));
+  app.add_systems(
+    Update,
+    (
+      show_fps_ui,
+      change_window_title,
+      // listen_keys,
+    )
+  );
+
   setup(&mut app, cli);
   
   app.run();
@@ -193,7 +221,7 @@ fn setup(app: &mut App, cli: Cli) {
         transport,
       };
       if !headless {
-        app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
+        // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
       } else {
         app.add_plugins(MinimalPlugins);
       }
@@ -217,7 +245,7 @@ fn setup(app: &mut App, cli: Cli) {
         server_port,
         transport,
       };
-      app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
+      // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
       if inspector {
         app.add_plugins(WorldInspectorPlugin::new());
       }
