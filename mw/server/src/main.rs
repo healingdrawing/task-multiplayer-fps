@@ -9,6 +9,7 @@ use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
 use bevy_egui::EguiPlugin;
 
 mod gui;
+use client::KeyStates;
 use gui::title::show_time::change_window_title;
 use gui::fps::show_fps::show_fps_ui;
 
@@ -106,6 +107,7 @@ async fn main() {
       // listen_keys,
     )
   );
+  app.insert_resource(KeyStates::default() );
   
   setup(&mut app, cli);
   

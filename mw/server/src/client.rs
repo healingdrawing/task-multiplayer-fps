@@ -96,8 +96,20 @@ pub(crate) fn init(
     // client.set_base_relative_speed(0.001);
 }
 
+/// attempt to fix multifiring of just_released
+#[derive(Resource, Clone, Copy, Default)]
+pub struct KeyStates {
+  up: bool,
+  down: bool,
+  left: bool,
+  right: bool,
+}
+
 // System that reads from peripherals and adds inputs to the buffer
-pub(crate) fn buffer_input(mut client: ResMut<Client<MyProtocol>>, keypress: Res<Input<KeyCode>>) {
+pub(crate) fn buffer_input(
+  mut client: ResMut<Client<MyProtocol>>,
+  mut key_states: ResMut<KeyStates>,
+  keypress: Res<Input<KeyCode>>) {
     let mut direction = Direction {
         up: false,
         down: false,
@@ -110,10 +122,20 @@ pub(crate) fn buffer_input(mut client: ResMut<Client<MyProtocol>>, keypress: Res
     if keypress.pressed(KeyCode::S) || keypress.pressed(KeyCode::Down) {
         direction.down = true;
     }
-    if keypress.just_released(KeyCode::A) || keypress.just_released(KeyCode::Left) {
+    
+    if !key_states.left && keypress.just_pressed(KeyCode::Left){
+      key_states.left = true;
+    }
+    if keypress.just_released(KeyCode::A)
+    || (
+      key_states.left
+      && keypress.just_released(KeyCode::Left)
+    ) {
+      key_states.left = false;
         direction.left = true;
         println!("direction.left: {}", direction.left); //fix multiple prints
     }
+
     if keypress.pressed(KeyCode::D) || keypress.pressed(KeyCode::Right) {
         direction.right = true;
     }
