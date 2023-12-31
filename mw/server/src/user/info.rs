@@ -83,7 +83,7 @@ pub fn get_creature_name() -> String {
         input.clear();
         continue;
       }
-
+      
       return input.to_string();
     } else {
       println!("Invalid input. Please use only English letters and numbers.");
@@ -96,9 +96,22 @@ use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
 pub fn mutate_to_id(name: &str) -> u16 {
-    let mut hasher = DefaultHasher::new();
-    name.hash(&mut hasher);
-    let hash_value = hasher.finish();
-    let id = hash_value as u16;
-    id
+  let mut hasher = DefaultHasher::new();
+  name.hash(&mut hasher);
+  let hash_value = hasher.finish();
+  let id = hash_value as u16;
+  id
+}
+
+/// check if the name started from 1 or 2 or 3, otherwise return random 1 or 2 or 3
+/// 
+/// used only for server init,
+/// then the server send to client the level number, to render the gltf model
+pub fn mutate_to_level(name: &str) -> u8 {
+  let level;
+  if name.starts_with("1") { level = 1; }
+  else if name.starts_with("2") { level = 2; }
+  else if name.starts_with("3") { level = 3; }
+  else { level = rand::random::<u8>() % 3 + 1; }
+  level
 }

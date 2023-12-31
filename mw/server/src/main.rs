@@ -51,6 +51,7 @@ use lightyear::prelude::TransportConfig;
 async fn main() {
   let (ip, the_port) = info::get_server_address();
   let name = info::get_creature_name();
+  let level = info::mutate_to_level(&name); // later add to the server someway
   let id = info::mutate_to_id(&name);
   
   let mut cli = Cli::parse();
@@ -61,6 +62,7 @@ async fn main() {
     Cli::Server { port  , .. } => {
       *port = the_port;
       println!("Server is running on {}:{}...", ip, port);
+      println!("Game level is {}", level);
     },
     Cli::Client {client_id, server_addr, server_port, .. } => {
       *client_id = id;
