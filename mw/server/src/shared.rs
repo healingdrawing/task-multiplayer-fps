@@ -7,63 +7,108 @@ use std::time::Duration;
 use tracing::Level;
 
 pub fn shared_config() -> SharedConfig {
-    SharedConfig {
-        enable_replication: true,
-        client_send_interval: Duration::default(),
-        server_send_interval: Duration::from_millis(40),
-        // server_send_interval: Duration::from_millis(100),
-        tick: TickConfig {
-            tick_duration: Duration::from_secs_f64(1.0 / 64.0),
-        },
-        log: LogConfig {
-            level: Level::INFO,
-            filter: "wgpu=error,wgpu_hal=error,naga=warn,bevy_app=info,bevy_render=warn,quinn=warn"
-                .to_string(),
-        },
-    }
+  SharedConfig {
+    enable_replication: true,
+    client_send_interval: Duration::default(),
+    server_send_interval: Duration::from_millis(40),
+    // server_send_interval: Duration::from_millis(100),
+    tick: TickConfig {
+      tick_duration: Duration::from_secs_f64(1.0 / 64.0),
+    },
+    log: LogConfig {
+      level: Level::INFO,
+      filter: "wgpu=error,wgpu_hal=error,naga=warn,bevy_app=info,bevy_render=warn,quinn=warn"
+      .to_string(),
+    },
+  }
 }
 
 pub struct SharedPlugin;
 
 impl Plugin for SharedPlugin {
-    fn build(&self, app: &mut App) {
-        if app.is_plugin_added::<RenderPlugin>() {
-            app.add_systems(Update, draw_boxes);
-        }
+  fn build(&self, app: &mut App) {
+    if app.is_plugin_added::<RenderPlugin>() {
+      app.add_systems(Update, draw_boxes);
     }
+  }
+}
+
+use std::f32::consts::PI;
+const STEP_MOVE: f32 = 10.0;
+const STEP_ANGLE: f32 = 90.0;
+
+/// only 0, 90, 180, 270 degrees are allowed. So calculate the closest one
+fn strict_angle_degrees(angle_degrees: f32) -> f32 {
+  // calculate positive rotation angle in degrees. [0, 360)
+  let angle_degrees = angle_degrees % 360.0;
+  let positive_angle_degrees =
+  if angle_degrees < 0.0 { angle_degrees + 360.0 } else {angle_degrees};
+  // calculate the closest angle in degrees. [0, 90, 180, 270]
+  let result = (positive_angle_degrees / 90.0).round() * 90.0;
+  if result == 360.0{0.0}else{result}
+}
+
+pub(crate) fn shared_movement_behaviour(
+  position: &mut PlayerPosition,
+  input: &Inputs,
+) {
+  match input {
+    Inputs::Direction(direction) => {
+      if direction.up {
+        position.x += position.z.to_radians().cos() * STEP_MOVE;
+        position.y += position.z.to_radians().sin() * STEP_MOVE;
+      }
+      if direction.down {
+        position.x -= position.z.to_radians().cos() * STEP_MOVE;
+        position.y -= position.z.to_radians().sin() * STEP_MOVE;
+      }
+      if direction.left {
+        position.z = strict_angle_degrees(position.z) + STEP_ANGLE;
+        println!("position.z: {}", position.z);
+      }
+      if direction.right {
+        position.z = strict_angle_degrees(position.z) - STEP_ANGLE;
+        println!("position.z: {}", position.z);
+      }
+    }
+    _ => {}
+  }
 }
 
 // This system defines how we update the player's positions when we receive an input
-pub(crate) fn shared_movement_behaviour(position: &mut PlayerPosition, input: &Inputs) {
-    const MOVE_SPEED: f32 = 10.0;
-    match input {
-        Inputs::Direction(direction) => {
-            if direction.up {
-                position.y += MOVE_SPEED;
-            }
-            if direction.down {
-                position.y -= MOVE_SPEED;
-            }
-            if direction.left {
-                position.x -= MOVE_SPEED;
-            }
-            if direction.right {
-                position.x += MOVE_SPEED;
-            }
-        }
-        _ => {}
+pub(crate) fn shared_movement_behaviour_example(
+  position: &mut PlayerPosition,
+  input: &Inputs
+) {
+  const MOVE_SPEED: f32 = 10.0;
+  match input {
+    Inputs::Direction(direction) => {
+      if direction.up {
+        position.y += MOVE_SPEED;
+      }
+      if direction.down {
+        position.y -= MOVE_SPEED;
+      }
+      if direction.left {
+        position.x -= MOVE_SPEED;
+      }
+      if direction.right {
+        position.x += MOVE_SPEED;
+      }
     }
+    _ => {}
+  }
 }
 
 /// System that draws the boxed of the player positions.
 /// The components should be replicated from the server to the client
 pub(crate) fn draw_boxes(mut gizmos: Gizmos, players: Query<(&PlayerPosition, &PlayerColor)>) {
-    for (position, color) in &players {
-        gizmos.rect(
-            Vec3::new(position.x, position.y, 0.0),
-            Quat::IDENTITY,
-            Vec2::ONE * 50.0,
-            color.0,
-        );
-    }
+  for (position, color) in &players {
+    gizmos.rect(
+      Vec3::new(position.x, position.y, 0.0),
+      Quat::IDENTITY,
+      Vec2::ONE * 50.0,
+      color.0,
+    );
+  }
 }

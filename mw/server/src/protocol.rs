@@ -1,3 +1,4 @@
+use bevy::math::Vec3;
 use bevy::prelude::{default, Bundle, Color, Component, Deref, DerefMut, Entity, Vec2};
 use bevy::utils::EntityHashSet;
 use derive_more::{Add, Mul};
@@ -10,11 +11,11 @@ pub(crate) struct PlayerBundle {
     id: PlayerId,
     position: PlayerPosition,
     color: PlayerColor,
-    replicate: Replicate, // looks like this should be removed properly, later
+    replicate: Replicate,
 }
 
 impl PlayerBundle {
-    pub(crate) fn new(id: ClientId, position: Vec2, color: Color) -> Self {
+    pub(crate) fn new(id: ClientId, position: Vec3, color: Color) -> Self {
         Self {
             id: PlayerId(id),
             position: PlayerPosition(position),
@@ -29,15 +30,21 @@ impl PlayerBundle {
     }
 }
 
-// Components. Probably this is not mandatory
+// Components
 
 #[derive(Component, Message, Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct PlayerId(ClientId);
 
+/// Player position in 3D space. The world player z is always 0.
+/// 
+/// The x and y coordinates are the position in the 2D plane.
+/// 
+/// and the z coordinate is the angle of the camera in degrees.
+/// 0 is x positive, 90 is y positive directions. CCW is + rotation(planned).
 #[derive(
     Component, Message, Serialize, Deserialize, Clone, Debug, PartialEq, Deref, DerefMut, Add, Mul,
 )]
-pub struct PlayerPosition(Vec2);
+pub struct PlayerPosition(Vec3);
 
 #[derive(Component, Message, Deserialize, Serialize, Clone, Debug, PartialEq)]
 pub struct PlayerColor(pub(crate) Color);

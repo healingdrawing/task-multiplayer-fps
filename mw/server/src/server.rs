@@ -86,7 +86,7 @@ pub(crate) fn handle_connections(
         let l = 0.5;
         let entity = commands.spawn(PlayerBundle::new(
             *client_id,
-            Vec2::ZERO,
+            Vec3::ZERO,
             Color::hsl(h, s, l),
         ));
         // Add a mapping from client id to entity id
