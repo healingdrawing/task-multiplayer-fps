@@ -112,6 +112,7 @@ pub(crate) fn buffer_input(mut client: ResMut<Client<MyProtocol>>, keypress: Res
     }
     if keypress.just_released(KeyCode::A) || keypress.just_released(KeyCode::Left) {
         direction.left = true;
+        println!("direction.left: {}", direction.left); //fix multiple prints
     }
     if keypress.pressed(KeyCode::D) || keypress.pressed(KeyCode::Right) {
         direction.right = true;
