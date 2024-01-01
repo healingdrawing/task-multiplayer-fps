@@ -47,12 +47,15 @@ use crate::server::MyServerPlugin;
 use lightyear::netcode::{ClientId, Key};
 use lightyear::prelude::TransportConfig;
 
+// hardcoded, to simplify the code
+const GAME_LEVEL: u8 = 1; // 1, 2, 3
+
 /// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
   let (ip, the_port) = info::get_server_address();
   let name = info::get_creature_name();
-  let level = info::mutate_to_level(&name); // later add to the server someway
+  // let level = info::mutate_to_level(&name); // later add to the server someway
   let id = info::mutate_to_id(&name);
   
   let mut cli = Cli::parse();
@@ -63,7 +66,7 @@ async fn main() {
     Cli::Server { port  , .. } => {
       *port = the_port;
       println!("Server is running on {}:{}...", ip, port);
-      println!("Game level is {}", level);
+      println!("Game level is {}", GAME_LEVEL);
     },
     Cli::Client {client_id, server_addr, server_port, .. } => {
       *client_id = id;
