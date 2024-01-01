@@ -38,9 +38,9 @@ const STEP_MOVE: f32 = 10.0;
 const STEP_ANGLE: f32 = 90.0;
 
 /// only 0, 90, 180, 270 degrees are allowed. So calculate the closest one
-fn strict_angle_degrees(angle_degrees: f32) -> f32 {
+fn strict_angle_degrees(angle_degrees: f32, appendix_degrees:f32) -> f32 {
   // calculate positive rotation angle in degrees. [0, 360)
-  let angle_degrees = angle_degrees % 360.0;
+  let angle_degrees = ( angle_degrees + appendix_degrees ) % 360.0;
   let positive_angle_degrees =
   if angle_degrees < 0.0 { angle_degrees + 360.0 } else {angle_degrees};
   // calculate the closest angle in degrees. [0, 90, 180, 270]
@@ -63,11 +63,11 @@ pub(crate) fn shared_movement_behaviour(
         position.y -= position.z.to_radians().sin() * STEP_MOVE;
       }
       if direction.left {
-        position.z = strict_angle_degrees(position.z) + STEP_ANGLE;
+        position.z = strict_angle_degrees(position.z, STEP_ANGLE);
         println!("position.z: {}", position.z);
       }
       if direction.right {
-        position.z = strict_angle_degrees(position.z) - STEP_ANGLE;
+        position.z = strict_angle_degrees(position.z, -STEP_ANGLE);
         println!("position.z: {}", position.z);
       }
     }

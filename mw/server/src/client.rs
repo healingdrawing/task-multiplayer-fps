@@ -116,32 +116,35 @@ pub(crate) fn buffer_input(
       left: false,
       right: false,
     };
-    if keypress.pressed(KeyCode::W) || keypress.pressed(KeyCode::Up) {
+    if keypress.pressed(KeyCode::Up) {
       direction.up = true;
     }
-    if keypress.pressed(KeyCode::S) || keypress.pressed(KeyCode::Down) {
+    if keypress.pressed(KeyCode::Down) {
       direction.down = true;
     }
     
+    // rotate -+90 degrees after release of key.
+    // Only one rotation per keypress for left and right
     if !key_states.left && keypress.just_pressed(KeyCode::Left){
       key_states.left = true;
     }
-    if keypress.just_released(KeyCode::A)
-    || (
-      key_states.left
-      && keypress.just_released(KeyCode::Left)
-    ) {
+    if key_states.left && keypress.just_released(KeyCode::Left) {
       key_states.left = false;
       direction.left = true;
-      println!("direction.left: {}", direction.left); //fix multiple prints
     }
     
-    if keypress.pressed(KeyCode::D) || keypress.pressed(KeyCode::Right) {
+    if !key_states.right && keypress.just_pressed(KeyCode::Right){
+      key_states.right = true;
+    }
+    if key_states.right && keypress.just_released(KeyCode::Right) {
+      key_states.right = false;
       direction.right = true;
     }
+    
     if !direction.is_none() {
       return client.add_input(Inputs::Direction(direction));
     }
+    
     if keypress.pressed(KeyCode::Delete) {
       // currently, inputs is an enum and we can only add one input per tick
       return client.add_input(Inputs::Delete);
