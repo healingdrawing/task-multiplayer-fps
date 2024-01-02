@@ -101,7 +101,6 @@ async fn main() {
     (
       show_fps_ui,
       change_window_title,
-      // listen_keys,
     )
   );
   app.insert_resource(KeyStates::default() );
