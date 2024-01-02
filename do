@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# build release executables
-# for server
-./doserver
-# for client
-./doclient
+# build release executable
+cargo build --release
+
+# copy release executable to the root folder level with nice name
+cp ./target/release/hybrid ./hybrid

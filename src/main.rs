@@ -13,14 +13,8 @@ use client::KeyStates;
 use gui::title::show_time::change_window_title;
 use gui::fps::show_fps::show_fps_ui;
 
-mod keyboard;
-use keyboard::activity::listen_keys;
-
 mod user;
 use user::info;
-
-mod connection;
-use connection::connect;
 
 //lightyear section
 // ! Run with

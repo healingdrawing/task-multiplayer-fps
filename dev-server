@@ -2,6 +2,6 @@
 
 # build and run server for development needs
 # build release executable
-./doserver
+./do
 # run executable
-./server
+./hybrid server

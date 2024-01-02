@@ -2,6 +2,6 @@
 
 # build and run client for development needs
 # build release executable
-./doclient
+./do
 # run executable
-./client
+./hybrid client

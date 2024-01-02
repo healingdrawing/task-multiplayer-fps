@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# remove old executable
+rm ./hybrid
+
+# remove old build
+rm -rf ./target
+
+# remove cargo lock
+rm ./Cargo.lock
