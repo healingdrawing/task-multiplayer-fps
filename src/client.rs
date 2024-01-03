@@ -86,6 +86,7 @@ pub(crate) fn init(
   // commands.spawn(Camera3dBundle::default());
   
   // commands.spawn(Camera2dBundle::default()); // todo: replace to 3d camera with gltf scene loaded from file
+  
   commands.spawn(TextBundle::from_section(
     format!("Client {}", plugin.client_id),
     TextStyle {
@@ -94,6 +95,7 @@ pub(crate) fn init(
       ..default()
     },
   ));
+
   client.connect();
   // client.set_base_relative_speed(0.001);
 }

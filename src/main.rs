@@ -10,7 +10,11 @@ use bevy_egui::EguiPlugin;
 // gltf
 use bevy::pbr::CascadeShadowConfigBuilder;
 use bevy::pbr::DirectionalLightShadowMap;
+use serde::de;
 use std::f32::consts::*;
+use bevy::render::camera::OrthographicProjection;
+use bevy::render::camera::ScalingMode;
+use bevy::render::camera::Viewport;
 // end of gltf
 
 mod gui;
@@ -52,9 +56,16 @@ const GAME_LEVEL: u8 = 1; // 1, 2, 3
 /// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
-  let (ip, the_port) = info::get_server_address();
-  let name = info::get_creature_name();
+  // let (ip, the_port) = info::get_server_address();
+  // let name = info::get_creature_name();
   // let level = info::mutate_to_level(&name); // later add to the server someway
+  
+  // dev gap
+  let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
+  let the_port = 8000;
+  let name = "client";
+  // end of dev gap
+  
   let id = info::mutate_to_id(&name);
   
   let mut cli = Cli::parse();
@@ -100,7 +111,7 @@ async fn main() {
     // LogDiagnosticsPlugin::default(), // to print fps in terminal
     FrameTimeDiagnosticsPlugin::default(),
   ));
-  app.insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)));
+  // app.insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)));
   app.add_systems(
     Update,
     (
@@ -213,44 +224,76 @@ fn setup(app: &mut App, cli: Cli) {
       app.insert_resource(DirectionalLightShadowMap { size: 4096 });
       app.add_systems(Startup, startup_setup);
       // end of 3d model stuff
-
+      
       app.add_plugins(client_plugin);
     }
   }
 }
 
 fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-  commands.spawn((
-      Camera3dBundle {
-          transform: Transform::from_xyz(0.7, 0.7, 1.0)
-              .looking_at(Vec3::new(0.0, 0.3, 0.0), Vec3::Y),
-          ..default()
+  commands.spawn(( // global camera
+    Camera3dBundle {
+      camera: Camera {
+        order: 0,
+        ..default()
       },
-      EnvironmentMapLight {
-          diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
-          specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
-      },
-  ));
-
-  commands.spawn(DirectionalLightBundle {
-      directional_light: DirectionalLight {
-          shadows_enabled: true,
-          ..default()
-      },
-      // This is a relatively small scene, so use tighter shadow
-      // cascade bounds than the default for better quality.
-      // We also adjusted the shadow map to be larger since we're
-      // only using a single cascade.
-      cascade_shadow_config: CascadeShadowConfigBuilder {
-          num_cascades: 1,
-          maximum_distance: 1.6,
-          ..default()
-      }
-      .into(),
+      transform: Transform::from_xyz(0.0, 0.0, 2.0)
+      .looking_at(Vec3::new(12.5, 12.5, 0.0), Vec3::Z),
       ..default()
+    },
+    EnvironmentMapLight {
+      diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
+      specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
+    },
+  ));
+  
+  commands.spawn(DirectionalLightBundle {
+    directional_light: DirectionalLight {
+      shadows_enabled: true,
+      ..default()
+    },
+    // This is a relatively small scene, so use tighter shadow
+    // cascade bounds than the default for better quality.
+    // We also adjusted the shadow map to be larger since we're
+    // only using a single cascade.
+    cascade_shadow_config: CascadeShadowConfigBuilder {
+      num_cascades: 1,
+      maximum_distance: 1.6,
+      ..default()
+    }
+    .into(),
+    ..default()
   });
   commands.spawn(SceneBundle {
-      scene: asset_server.load("player.gltf#Scene0"),
-      ..default()
+    scene: asset_server.load("level1.gltf#Scene0"),
+    ..default()
   });
+  
+  // minimap camera
+  /* */
+  commands.spawn((
+    Camera3dBundle {
+      camera: Camera {
+        viewport: Some(Viewport {
+          physical_position: UVec2::new(0, 750),
+          physical_size: UVec2::new(250, 250),
+          depth: 0.0..1.0,
+        }),
+        order: 1,
+        ..default()
+      },
+      projection: OrthographicProjection {
+        viewport_origin: Vec2::new(0.0, 0.0), // Top left corner of the screen
+        // scale: 25.0 / 250.0, // Scale factor from level size to viewport size
+        scaling_mode: ScalingMode::Fixed{width: 25.0, height: 25.0}, // Set the height of the camera view in world units
+        ..default()
+      }.into(),
+      transform: Transform::from_xyz(0.0, 0.0, 2.0)
+      .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
+      ..default()
+    },
+    // Add any additional components here...
+  ));
+  /**/
+  
 }
