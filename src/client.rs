@@ -83,7 +83,9 @@ pub(crate) fn init(
   mut client: ResMut<Client<MyProtocol>>, // Add the missing generic argument
   plugin: Res<MyClientPlugin>,
 ) {
-  commands.spawn(Camera2dBundle::default()); // todo: replace to 3d camera with gltf scene loaded from file
+  // commands.spawn(Camera3dBundle::default());
+  
+  // commands.spawn(Camera2dBundle::default()); // todo: replace to 3d camera with gltf scene loaded from file
   commands.spawn(TextBundle::from_section(
     format!("Client {}", plugin.client_id),
     TextStyle {
