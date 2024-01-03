@@ -3,6 +3,7 @@
 #![allow(unused_variables)]
 #![allow(dead_code)]
 
+use bevy::core_pipeline::clear_color::ClearColorConfig;
 // use bevy::diagnostic::LogDiagnosticsPlugin; // to print fps in terminal
 use bevy::prelude::*;
 use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
@@ -234,12 +235,12 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
   commands.spawn(( // global camera
     Camera3dBundle {
       camera: Camera {
+        order: 0,
         viewport: Some(Viewport {
           physical_position: UVec2::new(0, 0),
           physical_size: UVec2::new(1000, 1000),
           depth: 0.0..1.0,
-      }),
-        order: 0,
+        }),
         ..default()
       },
       transform: Transform::from_xyz(0.0, 0.0, 2.0)
@@ -247,58 +248,65 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
       ..default()
     },
     // EnvironmentMapLight {
-    //   diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
-    //   specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
-    // },
-  ));
-  
-  commands.spawn(DirectionalLightBundle {
-    directional_light: DirectionalLight {
-      shadows_enabled: true,
-      ..default()
-    },
-    // This is a relatively small scene, so use tighter shadow
-    // cascade bounds than the default for better quality.
-    // We also adjusted the shadow map to be larger since we're
-    // only using a single cascade.
-    cascade_shadow_config: CascadeShadowConfigBuilder {
-      num_cascades: 1,
-      maximum_distance: 1.6,
-      ..default()
-    }
-    .into(),
-    ..default()
-  });
-  commands.spawn(SceneBundle {
-    scene: asset_server.load("level1.gltf#Scene0"),
-    ..default()
-  });
-  
-  // minimap camera
-  /* */
-  commands.spawn((
-    Camera3dBundle {
-      camera: Camera {
-        viewport: Some(Viewport {
-          physical_position: UVec2::new(0, 750),
-          physical_size: UVec2::new(250, 250),
-          depth: 0.0..1.0,
-        }),
-        order: 1,
+      //   diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
+      //   specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
+      // },
+    ));
+    
+    commands.spawn(DirectionalLightBundle {
+      directional_light: DirectionalLight {
+        shadows_enabled: true,
         ..default()
       },
-      projection: OrthographicProjection {
-        viewport_origin: Vec2::new(0.0, 0.0), // Top left corner of the screen
-        // scale: 25.0 / 250.0, // Scale factor from level size to viewport size
-        scaling_mode: ScalingMode::Fixed{width: 25.0, height: 25.0}, // Set the height of the camera view in world units
+      // This is a relatively small scene, so use tighter shadow
+      // cascade bounds than the default for better quality.
+      // We also adjusted the shadow map to be larger since we're
+      // only using a single cascade.
+      cascade_shadow_config: CascadeShadowConfigBuilder {
+        num_cascades: 1,
+        maximum_distance: 1.6,
         ..default()
-      }.into(),
-      transform: Transform::from_xyz(0.0, 0.0, 2.0)
-      .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
+      }
+      .into(),
       ..default()
-    },
-    // Add any additional components here...
-  ));
-  /**/
-  
-}
+    });
+    commands.spawn(SceneBundle {
+      scene: asset_server.load("level1.gltf#Scene0"),
+      ..default()
+    });
+    
+    // minimap camera
+    /* */
+    commands.spawn((
+      Camera3dBundle {
+        camera_3d: Camera3d {
+          clear_color: ClearColorConfig::None,
+          ..default()
+        },
+        camera: Camera {
+          viewport: Some(Viewport {
+            physical_position: UVec2::new(0, 750),
+            physical_size: UVec2::new(250, 250),
+            depth: 0.0..1.0,
+          }),
+          order: 1,
+          ..default()
+        },
+        projection: OrthographicProjection {
+          viewport_origin: Vec2::new(0.0, 0.0), // Top left corner of the screen
+          // scale: 25.0 / 250.0, // Scale factor from level size to viewport size
+          scaling_mode: ScalingMode::Fixed{width: 25.0, height: 25.0}, // Set the height of the camera view in world units
+          ..default()
+        }.into(),
+        transform: Transform::from_xyz(0.0, 0.0, 2.0)
+        .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
+        ..default()
+      },
+      UiCameraConfig {
+        show_ui: false,
+      },
+      // Add any additional components here...
+    ));
+    /**/
+    
+  }
