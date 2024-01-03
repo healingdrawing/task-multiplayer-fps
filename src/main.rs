@@ -234,6 +234,11 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
   commands.spawn(( // global camera
     Camera3dBundle {
       camera: Camera {
+        viewport: Some(Viewport {
+          physical_position: UVec2::new(0, 0),
+          physical_size: UVec2::new(1000, 1000),
+          depth: 0.0..1.0,
+      }),
         order: 0,
         ..default()
       },
@@ -241,10 +246,10 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
       .looking_at(Vec3::new(12.5, 12.5, 0.0), Vec3::Z),
       ..default()
     },
-    EnvironmentMapLight {
-      diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
-      specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
-    },
+    // EnvironmentMapLight {
+    //   diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
+    //   specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
+    // },
   ));
   
   commands.spawn(DirectionalLightBundle {
