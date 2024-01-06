@@ -127,7 +127,7 @@ pub(crate) fn buffer_input(
     //   direction.down = true;
     // }
     
-    // one step per press (easier to control/check, and as original game)
+    // one step per unpress (easier to control/check, and as original game)
     if !key_states.up && keypress.just_pressed(KeyCode::Up){
       key_states.up = true;
     }
