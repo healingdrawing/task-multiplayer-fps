@@ -26,6 +26,8 @@ use gui::fps::show_fps::show_fps_ui;
 mod user;
 use user::info;
 
+mod level;
+
 //lightyear section
 // ! Run with
 // ! - `cargo run --example simple_box -- server`
@@ -51,8 +53,9 @@ use crate::server::MyServerPlugin;
 use lightyear::netcode::{ClientId, Key};
 use lightyear::prelude::TransportConfig;
 
+
 // hardcoded, to simplify the code
-const GAME_LEVEL: u8 = 1; // 1, 2, 3
+pub const GAME_LEVEL: u8 = 1; // 1, 2, 3
 
 /// it is a hybrid client or server
 #[tokio::main]

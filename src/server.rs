@@ -1,3 +1,4 @@
+use crate::level::get_random_spawn_position;
 use crate::protocol::*;
 use crate::shared::{shared_config, shared_movement_behaviour};
 use crate::{shared, Transports, KEY, PROTOCOL_ID};
@@ -86,7 +87,7 @@ pub(crate) fn handle_connections(
         let l = 0.5;
         let entity = commands.spawn(PlayerBundle::new(
             *client_id,
-            Vec3::ZERO,
+            get_random_spawn_position(),
             Color::hsl(h, s, l),
         ));
         // Add a mapping from client id to entity id

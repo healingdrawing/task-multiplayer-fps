@@ -1,3 +1,4 @@
+use crate::level::can_move_to;
 use crate::protocol::*;
 use bevy::prelude::*;
 use bevy::render::RenderPlugin;
@@ -5,6 +6,7 @@ use bevy_inspector_egui::quick::WorldInspectorPlugin;
 use lightyear::prelude::*;
 use std::time::Duration;
 use tracing::Level;
+use crate::GAME_LEVEL;
 
 pub fn shared_config() -> SharedConfig {
   SharedConfig {
@@ -34,7 +36,7 @@ impl Plugin for SharedPlugin {
 }
 
 use std::f32::consts::PI;
-const STEP_MOVE: f32 = 10.0;
+const STEP_MOVE: f32 = 1.0; // expect this as one meter of world system
 const STEP_ANGLE: f32 = 90.0;
 
 /// only 0, 90, 180, 270 degrees are allowed. So calculate the closest one
@@ -55,12 +57,22 @@ pub(crate) fn shared_movement_behaviour(
   match input {
     Inputs::Direction(direction) => {
       if direction.up {
-        position.x += position.z.to_radians().cos() * STEP_MOVE;
-        position.y += position.z.to_radians().sin() * STEP_MOVE;
+        let dx = position.z.to_radians().cos() * STEP_MOVE;
+        let dy = position.z.to_radians().sin() * STEP_MOVE;
+        if can_move_to(position.x + dx, position.y + dy) {
+          position.x += dx;
+          position.y += dy;
+        }
+        
       }
       if direction.down {
-        position.x -= position.z.to_radians().cos() * STEP_MOVE;
-        position.y -= position.z.to_radians().sin() * STEP_MOVE;
+        let dx = position.z.to_radians().cos() * STEP_MOVE;
+        let dy = position.z.to_radians().sin() * STEP_MOVE;
+        if can_move_to(position.x - dx, position.y - dy) {
+          position.x -= dx;
+          position.y -= dy;
+        }
+        
       }
       if direction.left {
         position.z = strict_angle_degrees(position.z, STEP_ANGLE);
@@ -75,6 +87,7 @@ pub(crate) fn shared_movement_behaviour(
   }
 }
 
+/*
 // This system defines how we update the player's positions when we receive an input
 pub(crate) fn shared_movement_behaviour_example(
   position: &mut PlayerPosition,
@@ -99,6 +112,7 @@ pub(crate) fn shared_movement_behaviour_example(
     _ => {}
   }
 }
+*/
 
 /// System that draws the boxed of the player positions.
 /// The components should be replicated from the server to the client
@@ -107,7 +121,7 @@ pub(crate) fn draw_boxes(mut gizmos: Gizmos, players: Query<(&PlayerPosition, &P
     gizmos.rect(
       Vec3::new(position.x, position.y, 0.0),
       Quat::IDENTITY,
-      Vec2::ONE * 50.0,
+      Vec2::ONE,// * 50.0,
       color.0,
     );
   }

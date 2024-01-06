@@ -120,13 +120,30 @@ pub(crate) fn buffer_input(
       left: false,
       right: false,
     };
-    if keypress.pressed(KeyCode::Up) {
+    // if keypress.pressed(KeyCode::Up) {
+    //   direction.up = true;
+    // }
+    // if keypress.pressed(KeyCode::Down) {
+    //   direction.down = true;
+    // }
+    
+    // one step per press (easier to control/check, and as original game)
+    if !key_states.up && keypress.just_pressed(KeyCode::Up){
+      key_states.up = true;
+    }
+    if key_states.up && keypress.just_released(KeyCode::Up) {
+      key_states.up = false;
       direction.up = true;
     }
-    if keypress.pressed(KeyCode::Down) {
+
+    if !key_states.down && keypress.just_pressed(KeyCode::Down){
+      key_states.down = true;
+    }
+    if key_states.down && keypress.just_released(KeyCode::Down) {
+      key_states.down = false;
       direction.down = true;
     }
-    
+
     // rotate -+90 degrees after release of key.
     // Only one rotation per keypress for left and right
     if !key_states.left && keypress.just_pressed(KeyCode::Left){
