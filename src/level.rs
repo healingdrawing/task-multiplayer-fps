@@ -62,8 +62,8 @@ pub fn can_move_to(x:f32, y:f32) -> bool{
 pub const SPAWN_POSITIONS: [[u8; 2];40] = [
   [1,3],[1,5],[1,7],[1,9],[1,11],[1,13],[1,15],[1,17],[1,19],[1,21], // left 10
   [23,3],[23,5],[23,7],[23,9],[23,11],[23,13],[23,15],[23,17],[23,19],[23,21], // right 10
-  [3,1],[5,1],[7,1],[9,1],[11,1],[13,1],[15,1],[17,1],[19,1],[21,1], // top 10
-  [3,23],[5,23],[7,23],[9,23],[11,23],[13,23],[15,23],[17,23],[19,23],[21,23], // bottom 10
+  [3,1],[5,1],[7,1],[9,1],[11,1],[13,1],[15,1],[17,1],[19,1],[21,1], // bottom 10
+  [3,23],[5,23],[7,23],[9,23],[11,23],[13,23],[15,23],[17,23],[19,23],[21,23], // top 10
 ];
 
 /// return random spawn position, from list of available cells to spawn
@@ -75,8 +75,8 @@ pub fn get_random_spawn_position() -> Vec3{
   let z = match index{
     0..=9 => {0.0}, // right directed
     10..=19 => {180.0}, // left directed
-    20..=29 => {270.0}, // down directed
-    30..=39 => {90.0}, // up directed
+    20..=29 => {90.0}, // up directed
+    30..=39 => {270.0}, // down directed
     _ => {
       println!("Error: get_random_spawn_position() index is out of range");
       0.0
