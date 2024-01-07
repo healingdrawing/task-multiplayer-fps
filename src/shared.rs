@@ -58,8 +58,8 @@ pub(crate) fn shared_movement_behaviour(
   match input {
     Inputs::Direction(direction) => {
       if direction.up {
-        let dx = position.z.to_radians().cos() * STEP_MOVE;
-        let dy = position.z.to_radians().sin() * STEP_MOVE;
+        let dx = (position.z.to_radians().cos() * STEP_MOVE).round();
+        let dy = (position.z.to_radians().sin() * STEP_MOVE).round();
         if can_move_to(position.x + dx, position.y + dy) {
           position.x += dx;
           position.y += dy;
@@ -67,8 +67,8 @@ pub(crate) fn shared_movement_behaviour(
         
       }
       if direction.down {
-        let dx = position.z.to_radians().cos() * STEP_MOVE;
-        let dy = position.z.to_radians().sin() * STEP_MOVE;
+        let dx = (position.z.to_radians().cos() * STEP_MOVE).round();
+        let dy = (position.z.to_radians().sin() * STEP_MOVE).round();
         if can_move_to(position.x - dx, position.y - dy) {
           position.x -= dx;
           position.y -= dy;
@@ -77,11 +77,11 @@ pub(crate) fn shared_movement_behaviour(
       }
       if direction.left {
         position.z = strict_angle_degrees(position.z, STEP_ANGLE);
-        println!("position.z: {}", position.z);
+        // println!("position.z: {}", position.z); // todo: remove this
       }
       if direction.right {
         position.z = strict_angle_degrees(position.z, -STEP_ANGLE);
-        println!("position.z: {}", position.z);
+        // println!("position.z: {}", position.z); // todo: remove this
       }
     }
     _ => {}
@@ -133,15 +133,18 @@ pub(crate) fn update_player_positions(
   mut players: Query<(&PlayerPosition, &mut Transform)>,
 ) {
   for (position, mut transform) in &mut players.iter_mut() {
-
-    transform.translation.x = position.x.round();
-
-    transform.translation.y = position.y.round();
     
-    //todo: check this. it looks absolutely raw. But first fix, blender export axes
-    transform.rotation = Quat::from_rotation_z(position.z.to_radians());
+    // no strict answer is precheck evil or not in this case
+    if (transform.translation.x - position.x).abs() > STEP_MOVE*0.5
+    || (transform.translation.y - position.y).abs() > STEP_MOVE*0.5
+    || (transform.rotation.to_axis_angle().1 - position.z.to_radians()).abs() > STEP_ANGLE.to_radians()*0.5
+    {
+      transform.translation.x = position.x;
+      transform.translation.y = position.y;
+      transform.rotation = Quat::from_rotation_z(position.z.to_radians());
+    }
     
-    // println!("position: {:?}", position); // todo: remove this . it is spamming every frame
-
+    // println!("position: {:?}", position); // todo: remove this (spamming every frame)
+    
   }
 }
