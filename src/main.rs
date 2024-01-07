@@ -247,7 +247,7 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         ..default()
       },
       transform: Transform::from_xyz(0.0, 0.0, 2.0)
-      .looking_at(Vec3::new(12.5, 12.5, 0.0), Vec3::Z),
+      .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Z),
       ..default()
     },
     // EnvironmentMapLight {
@@ -274,7 +274,7 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
       ..default()
     });
     commands.spawn(SceneBundle {
-      scene: asset_server.load("level1.gltf#Scene0"),
+      // scene: asset_server.load("level1.gltf#Scene0"), //todo: uncomment later when the player move/position will be ready
       ..default()
     });
     

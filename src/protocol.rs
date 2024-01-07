@@ -33,7 +33,7 @@ impl PlayerBundle {
 // Components
 
 #[derive(Component, Message, Serialize, Deserialize, Clone, Debug, PartialEq)]
-pub struct PlayerId(ClientId);
+pub struct PlayerId(pub (crate) ClientId);
 
 /// Player position in 3D space. The world player z is always 0.
 /// 

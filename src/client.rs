@@ -70,6 +70,7 @@ impl Plugin for MyClientPlugin {
         receive_message1,
         receive_entity_spawn,
         receive_entity_despawn,
+        handle_player_spawn,
         handle_predicted_spawn,
         handle_interpolated_spawn,
       ),
@@ -95,7 +96,7 @@ pub(crate) fn init(
       ..default()
     },
   ));
-
+  
   client.connect();
   // client.set_base_relative_speed(0.001);
 }
@@ -129,7 +130,7 @@ pub(crate) fn buffer_input(
       key_states.up = false;
       direction.up = true;
     }
-
+    
     if !key_states.down && keypress.just_pressed(KeyCode::Down){
       key_states.down = true;
     }
@@ -137,7 +138,7 @@ pub(crate) fn buffer_input(
       key_states.down = false;
       direction.down = true;
     }
-
+    
     // rotate -+90 degrees after release of key.
     // Only one rotation per keypress for left and right
     if !key_states.left && keypress.just_pressed(KeyCode::Left){
@@ -209,6 +210,30 @@ pub(crate) fn buffer_input(
   pub(crate) fn receive_entity_despawn(mut reader: EventReader<EntityDespawnEvent>) {
     for event in reader.read() {
       info!("Received entity despawn: {:?}", event.entity());
+    }
+  }
+  
+  pub(crate) fn handle_player_spawn(
+    mut commands: Commands,
+    plugin: Res<MyClientPlugin>,
+    mut player_spawn: EventReader<ComponentInsertEvent<PlayerId>>,
+    players: Query<&PlayerId>,
+    asset_server: ResMut<AssetServer>,
+  ) {
+    for event in player_spawn.read() {
+      let entity = event.entity();
+      if let Ok(player_id) = players.get(*entity) {
+        if player_id.0 == plugin.client_id {
+          // this is the controlled player
+        } else {
+          // this is another player
+        }
+        let gltf = SceneBundle {
+          scene: asset_server.load("player.gltf#Scene0"),
+          ..default()
+        };
+        commands.entity(*entity).insert(gltf);
+      }
     }
   }
   
