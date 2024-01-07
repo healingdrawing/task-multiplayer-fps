@@ -83,12 +83,10 @@ pub(crate) fn handle_connections(
         let client_id = connection.context();
         // Generate pseudo random color from client id.
         let h = (((client_id * 30) % 360) as f32) / 360.0;
-        let s = 0.8;
-        let l = 0.5;
         let entity = commands.spawn(PlayerBundle::new(
             *client_id,
             get_random_spawn_position(),
-            Color::hsl(h, s, l),
+            Color::hsl(h, 0.8, 0.5),
         ));
         // Add a mapping from client id to entity id
         global

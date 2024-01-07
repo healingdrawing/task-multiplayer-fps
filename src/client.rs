@@ -120,12 +120,6 @@ pub(crate) fn buffer_input(
       left: false,
       right: false,
     };
-    // if keypress.pressed(KeyCode::Up) {
-    //   direction.up = true;
-    // }
-    // if keypress.pressed(KeyCode::Down) {
-    //   direction.down = true;
-    // }
     
     // one step per unpress (easier to control/check, and as original game)
     if !key_states.up && keypress.just_pressed(KeyCode::Up){
