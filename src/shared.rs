@@ -31,6 +31,7 @@ impl Plugin for SharedPlugin {
   fn build(&self, app: &mut App) {
     if app.is_plugin_added::<RenderPlugin>() {
       app.add_systems(Update, draw_boxes);
+      app.add_systems(FixedUpdate, update_player_positions);
     }
   }
 }
@@ -124,5 +125,22 @@ pub(crate) fn draw_boxes(mut gizmos: Gizmos, players: Query<(&PlayerPosition, &P
       Vec2::ONE,// * 50.0,
       color.0,
     );
+  }
+}
+
+/// System that updates the player positions.
+pub(crate) fn update_player_positions(
+  mut players: Query<(&PlayerPosition, &mut Transform)>,
+) {
+  for (position, mut transform) in &mut players.iter_mut() {
+    transform.translation.x = position.x;
+
+    transform.translation.y = position.y;
+    
+    
+    transform.rotation = Quat::from_rotation_z(position.z.to_radians());
+    
+    println!("position: {:?}", position);
+
   }
 }
