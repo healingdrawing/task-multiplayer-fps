@@ -288,7 +288,7 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         },
         camera: Camera {
           viewport: Some(Viewport {
-            physical_position: UVec2::new(0, 750),
+            physical_position: UVec2::new(0, 0), // y 750 to bottom
             physical_size: UVec2::new(250, 250),
             depth: 0.0..1.0,
           }),
