@@ -1,8 +1,9 @@
 use crate::protocol::Direction;
-use crate::protocol::*;
+use crate::{protocol::*, MINIMAP_ONLY, MAIN_ONLY};
 use crate::shared::{shared_config, shared_movement_behaviour};
 use crate::{Transports, KEY, PROTOCOL_ID};
 use bevy::prelude::*;
+use bevy::render::view::RenderLayers;
 use lightyear::prelude::client::*;
 use lightyear::prelude::*;
 use std::net::{Ipv4Addr, SocketAddr};
@@ -223,16 +224,23 @@ pub(crate) fn buffer_input(
     for event in player_spawn.read() {
       let entity = event.entity();
       if let Ok(player_id) = players.get(*entity) {
-        if player_id.0 == plugin.client_id {
-          // this is the controlled player
-        } else {
-          // this is another player
-        }
+        
         let gltf = SceneBundle {
           scene: asset_server.load("player.gltf#Scene0"),
           ..default()
         };
-        commands.entity(*entity).insert(gltf);
+
+        if player_id.0 == plugin.client_id {
+          // this is the controlled player MINIMAP
+          commands.entity(*entity)
+          .insert(MINIMAP_ONLY)
+          .insert(gltf);
+        } else {
+          // this is another player GLOBAL
+          commands.entity(*entity)
+          .insert(MAIN_ONLY)
+          .insert(gltf);
+        }
       }
     }
   }

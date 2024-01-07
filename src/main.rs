@@ -7,6 +7,7 @@ use bevy::core_pipeline::clear_color::ClearColorConfig;
 // use bevy::diagnostic::LogDiagnosticsPlugin; // to print fps in terminal
 use bevy::prelude::*;
 use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
+use bevy::render::view::RenderLayers;
 use bevy_egui::EguiPlugin;
 // gltf
 use bevy::pbr::CascadeShadowConfigBuilder;
@@ -60,14 +61,14 @@ pub const GAME_LEVEL: u8 = 1; // 1, 2, 3
 /// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
-  let (ip, the_port) = info::get_server_address();
-  let name = info::get_creature_name();
-  let level = info::mutate_to_level(&name); // later add to the server someway
+  // let (ip, the_port) = info::get_server_address();
+  // let name = info::get_creature_name();
+  // let level = info::mutate_to_level(&name); // later add to the server someway
   
   // dev gap
-  // let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
-  // let the_port = 8000;
-  // let name = "client";
+  let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
+  let the_port = 8000;
+  let name = "client";
   // end of dev gap
   
   let id = info::mutate_to_id(&name);
@@ -234,6 +235,10 @@ fn setup(app: &mut App, cli: Cli) {
   }
 }
 
+
+const MAIN_ONLY: RenderLayers = RenderLayers::layer(2);
+const MINIMAP_ONLY: RenderLayers = RenderLayers::layer(1);
+
 fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
   // --------------------------------------------
   // global camera. Must display the whole level.
@@ -256,6 +261,7 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
       .looking_at(Vec3::new(2.0, 22.0, 0.0), Vec3::Z),
       ..default()
     },
+    MAIN_ONLY,
 
     /*
     EnvironmentMapLight {
@@ -266,28 +272,6 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     
   ));
   
-  commands.spawn(DirectionalLightBundle {
-    directional_light: DirectionalLight {
-      shadows_enabled: true,
-      ..default()
-    },
-    // This is a relatively small scene, so use tighter shadow
-    // cascade bounds than the default for better quality.
-    // We also adjusted the shadow map to be larger since we're
-    // only using a single cascade.
-    cascade_shadow_config: CascadeShadowConfigBuilder {
-      num_cascades: 1,
-      maximum_distance: 1.6,
-      ..default()
-    }
-    .into(),
-    ..default()
-  });
-  
-  commands.spawn(SceneBundle {
-    scene: asset_server.load("level1.gltf#Scene0"),
-    ..default()
-  });
   
   // --------------------------------------------
   // minimap camera . Must display level and player position.
@@ -318,10 +302,30 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
       .looking_at(Vec3::new(-0.5, -0.5, 0.0), Vec3::Y),
       ..default()
     },
-    UiCameraConfig {
-      show_ui: false,
-    },
+    UiCameraConfig { show_ui: false, },
     
+    MINIMAP_ONLY,
   ));
+
+  
+  commands.spawn(DirectionalLightBundle {
+    directional_light: DirectionalLight {
+      shadows_enabled: true,
+      ..default()
+    },
+    cascade_shadow_config: CascadeShadowConfigBuilder {
+      num_cascades: 1,
+      maximum_distance: 1.6,
+      ..default()
+    }
+    .into(),
+    ..default()
+  });
+  
+  commands.spawn(SceneBundle {
+    scene: asset_server.load("level1.gltf#Scene0"),
+    ..default()
+  });
+  
   
 }
