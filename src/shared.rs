@@ -134,14 +134,14 @@ pub(crate) fn update_player_positions(
 ) {
   for (position, mut transform) in &mut players.iter_mut() {
 
-    transform.translation.x = position.x;
+    transform.translation.x = position.x.round();
 
-    transform.translation.y = position.y;
+    transform.translation.y = position.y.round();
     
     //todo: check this. it looks absolutely raw. But first fix, blender export axes
     transform.rotation = Quat::from_rotation_z(position.z.to_radians());
     
-    println!("position: {:?}", position);
+    // println!("position: {:?}", position); // todo: remove this . it is spamming every frame
 
   }
 }
