@@ -60,14 +60,14 @@ pub const GAME_LEVEL: u8 = 1; // 1, 2, 3
 /// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
-  // let (ip, the_port) = info::get_server_address();
-  // let name = info::get_creature_name();
-  // let level = info::mutate_to_level(&name); // later add to the server someway
+  let (ip, the_port) = info::get_server_address();
+  let name = info::get_creature_name();
+  let level = info::mutate_to_level(&name); // later add to the server someway
   
   // dev gap
-  let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
-  let the_port = 8000;
-  let name = "client";
+  // let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
+  // let the_port = 8000;
+  // let name = "client";
   // end of dev gap
   
   let id = info::mutate_to_id(&name);
@@ -235,7 +235,13 @@ fn setup(app: &mut App, cli: Cli) {
 }
 
 fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-  commands.spawn(( // global camera
+  // --------------------------------------------
+  // global camera. Must display the whole level.
+  // Must be in front of the player cell.
+  // So, it should be controllable by the keyboard.
+  // As result the player is not visible.
+  // --------------------------------------------
+  commands.spawn((
     Camera3dBundle {
       camera: Camera {
         order: 0,
@@ -246,70 +252,76 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         }),
         ..default()
       },
-      transform: Transform::from_xyz(0.0, 0.0, 2.0)
-      .looking_at(Vec3::new(2.5, 2.5, 0.0), Vec3::Z),
+      transform: Transform::from_xyz(2.0, 2.0, 1.0)
+      .looking_at(Vec3::new(2.0, 22.0, 0.0), Vec3::Z),
       ..default()
     },
-    // EnvironmentMapLight {
-      //   diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
-      //   specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
-      // },
-    ));
+
+    /*
+    EnvironmentMapLight {
+      diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
+      specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
+    },
+    */
     
-    commands.spawn(DirectionalLightBundle {
-      directional_light: DirectionalLight {
-        shadows_enabled: true,
-        ..default()
-      },
-      // This is a relatively small scene, so use tighter shadow
-      // cascade bounds than the default for better quality.
-      // We also adjusted the shadow map to be larger since we're
-      // only using a single cascade.
-      cascade_shadow_config: CascadeShadowConfigBuilder {
-        num_cascades: 1,
-        maximum_distance: 1.6,
-        ..default()
-      }
-      .into(),
+  ));
+  
+  commands.spawn(DirectionalLightBundle {
+    directional_light: DirectionalLight {
+      shadows_enabled: true,
       ..default()
-    });
-    commands.spawn(SceneBundle {
-      scene: asset_server.load("level1.gltf#Scene0"), //todo: uncomment later when the player move/position will be ready
+    },
+    // This is a relatively small scene, so use tighter shadow
+    // cascade bounds than the default for better quality.
+    // We also adjusted the shadow map to be larger since we're
+    // only using a single cascade.
+    cascade_shadow_config: CascadeShadowConfigBuilder {
+      num_cascades: 1,
+      maximum_distance: 1.6,
       ..default()
-    });
-    
-    // minimap camera
-    /* */
-    commands.spawn((
-      Camera3dBundle {
-        camera_3d: Camera3d {
-          clear_color: ClearColorConfig::None,
-          ..default()
-        },
-        camera: Camera {
-          viewport: Some(Viewport {
-            physical_position: UVec2::new(0, 50), // y 750 to bottom
-            physical_size: UVec2::new(250, 250),
-            depth: 0.0..1.0,
-          }),
-          order: 1,
-          ..default()
-        },
-        projection: OrthographicProjection {
-          viewport_origin: Vec2::new(0.0, 0.0), // Top left corner of the screen
-          // scale: 25.0 / 250.0, // Scale factor from level size to viewport size
-          scaling_mode: ScalingMode::Fixed{width: 25.0, height: 25.0}, // Set the height of the camera view in world units
-          ..default()
-        }.into(),
-        transform: Transform::from_xyz(0.0, 0.0, 2.0)
-        .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
+    }
+    .into(),
+    ..default()
+  });
+  
+  commands.spawn(SceneBundle {
+    scene: asset_server.load("level1.gltf#Scene0"),
+    ..default()
+  });
+  
+  // --------------------------------------------
+  // minimap camera . Must display level and player position.
+  // Other players are hidden. Orthographic projection from top.
+  // --------------------------------------------
+  commands.spawn((
+    Camera3dBundle {
+      camera_3d: Camera3d {
+        clear_color: ClearColorConfig::None,
         ..default()
       },
-      UiCameraConfig {
-        show_ui: false,
+      camera: Camera {
+        viewport: Some(Viewport {
+          physical_position: UVec2::new(0, 50), // y 750 to bottom
+          physical_size: UVec2::new(250, 250),
+          depth: 0.0..1.0,
+        }),
+        order: 1,
+        ..default()
       },
-      // Add any additional components here...
-    ));
-    /**/
+      projection: OrthographicProjection {
+        viewport_origin: Vec2::new(0.0, 0.0), // Top left corner of the screen
+        // scale: 25.0 / 250.0, // Scale factor from level size to viewport size
+        scaling_mode: ScalingMode::Fixed{width: 25.0, height: 25.0}, // Set the height of the camera view in world units
+        ..default()
+      }.into(),
+      transform: Transform::from_xyz(-0.5, -0.5, 2.0)
+      .looking_at(Vec3::new(-0.5, -0.5, 0.0), Vec3::Y),
+      ..default()
+    },
+    UiCameraConfig {
+      show_ui: false,
+    },
     
-  }
+  ));
+  
+}
