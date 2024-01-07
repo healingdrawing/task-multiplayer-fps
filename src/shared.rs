@@ -133,11 +133,12 @@ pub(crate) fn update_player_positions(
   mut players: Query<(&PlayerPosition, &mut Transform)>,
 ) {
   for (position, mut transform) in &mut players.iter_mut() {
+
     transform.translation.x = position.x;
 
     transform.translation.y = position.y;
     
-    
+    //todo: check this. it looks absolutely raw. But first fix, blender export axes
     transform.rotation = Quat::from_rotation_z(position.z.to_radians());
     
     println!("position: {:?}", position);
