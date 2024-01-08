@@ -68,7 +68,7 @@ impl Plugin for MyClientPlugin {
     );
     app.add_systems(FixedUpdate, player_movement.in_set(FixedUpdateSet::Main));
 
-    app.add_systems(FixedUpdate, update_camera_position.in_set(FixedUpdateSet::Main));
+    // app.add_systems(FixedUpdate, update_camera_position.in_set(FixedUpdateSet::Main));
     
     app.add_systems(
       Update,
@@ -80,7 +80,7 @@ impl Plugin for MyClientPlugin {
         handle_predicted_spawn,
         handle_interpolated_spawn,
         draw_boxes,
-        // update_camera_positions,
+        update_camera_position,
       ),
     );
   }
@@ -293,7 +293,8 @@ pub(crate) fn draw_boxes(
 /// System that updates the player positions.
 pub(crate) fn update_camera_position(
   mut cameras: Query<(&Camera, With<MyCameraMarker>, &mut Transform)>,
-  mut players: Query<(&PlayerPosition, &PlayerId)>,
+  // mut players: Query<(&PlayerPosition, &PlayerId)>,
+  mut players: Query<(&PlayerPosition, &PlayerId), With<Confirmed>>,
   plugin: Res<MyClientPlugin>,
 ) {
   for (position, player_id) in &mut players.iter_mut() {
