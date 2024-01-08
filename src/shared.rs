@@ -84,7 +84,15 @@ pub(crate) fn shared_movement_behaviour(
         position.z = strict_angle_degrees(position.z, -STEP_ANGLE);
         // println!("position.z: {}", position.z); // todo: remove this
       }
-    }
+    },
+    Inputs::Delete => {
+      if position.x > 1.0 && position.x < 23.0
+      && position.y > 1.0 && position.y < 23.0
+      {
+        // todo: detectd the hit to other players in front of the player
+
+      }
+    },
     _ => {}
   }
 }
