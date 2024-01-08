@@ -67,6 +67,9 @@ impl Plugin for MyClientPlugin {
       buffer_input.in_set(InputSystemSet::BufferInputs),
     );
     app.add_systems(FixedUpdate, player_movement.in_set(FixedUpdateSet::Main));
+    
+    app.add_systems(FixedUpdate, update_camera_positions.in_set(FixedUpdateSet::Main));
+    
     app.add_systems(
       Update,
       (
@@ -77,7 +80,7 @@ impl Plugin for MyClientPlugin {
         handle_predicted_spawn,
         handle_interpolated_spawn,
         draw_boxes,
-        update_camera_positions,
+        // update_camera_positions,
       ),
     );
   }
