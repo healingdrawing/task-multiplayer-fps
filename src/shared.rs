@@ -38,8 +38,8 @@ impl Plugin for SharedPlugin {
 }
 
 use std::f32::consts::PI;
-const STEP_MOVE: f32 = 1.0; // expect this as one meter of world system
-const STEP_ANGLE: f32 = 90.0;
+pub const STEP_MOVE: f32 = 1.0; // expect this as one meter of world system
+pub const STEP_ANGLE: f32 = 90.0;
 
 /// only 0, 90, 180, 270 degrees are allowed. So calculate the closest one
 fn strict_angle_degrees(angle_degrees: f32, appendix_degrees:f32) -> f32 {

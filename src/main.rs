@@ -7,14 +7,12 @@ use bevy::core_pipeline::clear_color::ClearColorConfig;
 // use bevy::diagnostic::LogDiagnosticsPlugin; // to print fps in terminal
 use bevy::prelude::*;
 use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
-use bevy::render::view::RenderLayers;
 use bevy_egui::EguiPlugin;
 // gltf
 use bevy::pbr::CascadeShadowConfigBuilder;
 use bevy::pbr::DirectionalLightShadowMap;
 use serde::de;
 use std::f32::consts::*;
-use bevy::render::camera::OrthographicProjection;
 use bevy::render::camera::ScalingMode;
 use bevy::render::camera::Viewport;
 // end of gltf
@@ -235,6 +233,9 @@ fn setup(app: &mut App, cli: Cli) {
   }
 }
 
+#[derive(Component)]
+struct MyCameraMarker;
+
 fn startup_setup(
   mut commands: Commands,
   mut gizmo_config: ResMut<GizmoConfig>,
@@ -263,8 +264,15 @@ fn startup_setup(
       },
       transform: Transform::from_xyz(2.0, 2.0, 1.0)
       .looking_at(Vec3::new(2.0, 22.0, 0.0), Vec3::Z),
+
+      projection: PerspectiveProjection {
+        fov: 90.0 * PI / 180.0,
+        ..default()
+      }.into(),
+
       ..default()
     },
+    MyCameraMarker,
 
     /*
     EnvironmentMapLight {

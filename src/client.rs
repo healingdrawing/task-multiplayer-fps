@@ -10,6 +10,8 @@ use std::net::{Ipv4Addr, SocketAddr};
 use std::str::FromStr;
 use std::time::Duration;
 
+use crate::MyCameraMarker;
+
 #[derive(Resource, Clone, Copy)]
 pub struct MyClientPlugin {
   pub(crate) client_id: ClientId,
@@ -75,6 +77,7 @@ impl Plugin for MyClientPlugin {
         handle_predicted_spawn,
         handle_interpolated_spawn,
         draw_boxes,
+        update_camera_positions,
       ),
     );
   }
@@ -283,3 +286,47 @@ pub(crate) fn buffer_input(
       }
     }
   }
+
+  /// System that updates the player positions.
+pub(crate) fn update_camera_positions(
+  mut cameras: Query<(&Camera, With<MyCameraMarker>, &mut Transform)>,
+  mut players: Query<(&PlayerPosition, &PlayerId)>,
+  plugin: Res<MyClientPlugin>,
+) {
+  for (position, player_id) in &mut players.iter_mut() {
+    if player_id.0 == plugin.client_id {
+
+      let (camera, _, mut transform) = cameras.single_mut();
+
+      let look_at_target = match position.z as i32 {
+        0 => Vec3::new(position.x + 1.0 , position.y, 0.0),
+        90 => Vec3::new(position.x, position.y + 1.0, 0.0),
+        180 => Vec3::new(position.x - 1.0, position.y, 0.0),
+        270 => Vec3::new(position.x, position.y - 1.0, 0.0),
+        _ => Vec3::new(position.x, position.y, 0.0),
+      };
+
+      let look_from = match position.z as i32 {
+        0 => Vec3::new(position.x + 0.25 , position.y, 0.0),
+        90 => Vec3::new(position.x, position.y + 0.25, 0.0),
+        180 => Vec3::new(position.x - 0.25, position.y, 0.0),
+        270 => Vec3::new(position.x, position.y - 0.25, 0.0),
+        _ => Vec3::new(position.x, position.y, 0.0),
+      };
+
+      transform.look_at(
+        look_at_target,
+        Vec3::Z,
+      );
+      transform.translation.x = look_from.x;
+      transform.translation.y = look_from.y;
+      transform.translation.z = look_from.z;
+      // transform.rotation = Quat::from_rotation_z(position.z.to_radians());
+
+      break;
+      
+    
+    // println!("position: {:?}", position); // todo: remove this
+    }
+  }
+}
