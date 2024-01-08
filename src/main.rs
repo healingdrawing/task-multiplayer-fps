@@ -220,6 +220,7 @@ fn setup(app: &mut App, cli: Cli) {
         server_port,
         transport,
       };
+      app.add_plugins(client_plugin);
       // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
       if inspector {
         app.add_plugins(WorldInspectorPlugin::new());
@@ -230,16 +231,19 @@ fn setup(app: &mut App, cli: Cli) {
       app.add_systems(Startup, startup_setup);
       // end of 3d model stuff
       
-      app.add_plugins(client_plugin);
     }
   }
 }
 
+fn startup_setup(
+  mut commands: Commands,
+  mut gizmo_config: ResMut<GizmoConfig>,
+  asset_server: Res<AssetServer>
+) {
 
-const MAIN_ONLY: RenderLayers = RenderLayers::layer(2);
-const MINIMAP_ONLY: RenderLayers = RenderLayers::layer(1);
+  // make lines fat
+  gizmo_config.line_width = 3.0;
 
-fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
   // --------------------------------------------
   // global camera. Must display the whole level.
   // Must be in front of the player cell.
@@ -261,7 +265,6 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
       .looking_at(Vec3::new(2.0, 22.0, 0.0), Vec3::Z),
       ..default()
     },
-    MAIN_ONLY,
 
     /*
     EnvironmentMapLight {
@@ -298,13 +301,11 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         scaling_mode: ScalingMode::Fixed{width: 25.0, height: 25.0}, // Set the height of the camera view in world units
         ..default()
       }.into(),
-      transform: Transform::from_xyz(-0.5, -0.5, 2.0)
-      .looking_at(Vec3::new(-0.5, -0.5, 0.0), Vec3::Y),
+      transform: Transform::from_xyz(-25.5, -0.5, 2.0)
+      .looking_at(Vec3::new(-25.5, -0.5, 0.0), Vec3::Y),
       ..default()
     },
     UiCameraConfig { show_ui: false, },
-    
-    MINIMAP_ONLY,
   ));
 
   
@@ -322,10 +323,18 @@ fn startup_setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     ..default()
   });
   
+  // perspective world
   commands.spawn(SceneBundle {
     scene: asset_server.load("level1.gltf#Scene0"),
     ..default()
   });
+
+  // minimap
+  commands.spawn(SceneBundle {
+    scene: asset_server.load("level1.gltf#Scene0"),
+    transform: Transform::from_translation(Vec3::new(-25.0, 0.0, 0.0)),
+    ..Default::default()
+ });
   
   
 }

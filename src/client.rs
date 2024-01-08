@@ -1,5 +1,5 @@
 use crate::protocol::Direction;
-use crate::{protocol::*, MINIMAP_ONLY, MAIN_ONLY};
+use crate::protocol::*;
 use crate::shared::{shared_config, shared_movement_behaviour};
 use crate::{Transports, KEY, PROTOCOL_ID};
 use bevy::prelude::*;
@@ -74,6 +74,7 @@ impl Plugin for MyClientPlugin {
         handle_player_spawn,
         handle_predicted_spawn,
         handle_interpolated_spawn,
+        draw_boxes,
       ),
     );
   }
@@ -229,16 +230,14 @@ pub(crate) fn buffer_input(
           scene: asset_server.load("player.gltf#Scene0"),
           ..default()
         };
-
+        
         if player_id.0 == plugin.client_id {
           // this is the controlled player MINIMAP
           commands.entity(*entity)
-          .insert(MINIMAP_ONLY)
           .insert(gltf);
         } else {
           // this is another player GLOBAL
           commands.entity(*entity)
-          .insert(MAIN_ONLY)
           .insert(gltf);
         }
       }
@@ -262,5 +261,25 @@ pub(crate) fn buffer_input(
   ) {
     for mut color in interpolated.iter_mut() {
       color.0.set_s(0.1);
+    }
+  }
+  
+  /// Was moved from src/shared.rs, to avoid black magic.
+  /// System that draws the boxed of the player positions.
+  /// The components should be replicated from the server to the client
+  pub(crate) fn draw_boxes(
+    mut gizmos: Gizmos,
+    players: Query<(&PlayerPosition, &PlayerColor, &PlayerId)>,
+    plugin: Res<MyClientPlugin>,
+  ) {
+    for (position, color, player_id) in &players {
+      if player_id.0 == plugin.client_id {
+        gizmos.circle(
+          Vec3::new(position.x-25.0, position.y, 0.0),
+          Vec3::Z,
+          0.1,
+          Color::GREEN,
+        );
+      }
     }
   }
