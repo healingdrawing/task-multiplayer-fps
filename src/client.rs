@@ -67,8 +67,8 @@ impl Plugin for MyClientPlugin {
       buffer_input.in_set(InputSystemSet::BufferInputs),
     );
     app.add_systems(FixedUpdate, player_movement.in_set(FixedUpdateSet::Main));
-    
-    app.add_systems(FixedUpdate, update_camera_positions.in_set(FixedUpdateSet::Main));
+
+    app.add_systems(FixedUpdate, update_camera_position.in_set(FixedUpdateSet::Main));
     
     app.add_systems(
       Update,
@@ -291,7 +291,7 @@ pub(crate) fn draw_boxes(
 }
 
 /// System that updates the player positions.
-pub(crate) fn update_camera_positions(
+pub(crate) fn update_camera_position(
   mut cameras: Query<(&Camera, With<MyCameraMarker>, &mut Transform)>,
   mut players: Query<(&PlayerPosition, &PlayerId)>,
   plugin: Res<MyClientPlugin>,
