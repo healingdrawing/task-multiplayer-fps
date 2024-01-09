@@ -89,8 +89,8 @@ pub(crate) fn shared_movement_behaviour(
       if position.x > 1.0 && position.x < 23.0
       && position.y > 1.0 && position.y < 23.0
       {
-        // todo: detectd the hit to other players in front of the player
-
+        // todo: detect the hit to other players in front of the player
+        // println!("shared.rs Delete: {:?}", position);
       }
     },
     _ => {}

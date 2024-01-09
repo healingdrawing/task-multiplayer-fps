@@ -59,14 +59,14 @@ pub const GAME_LEVEL: u8 = 1; // 1, 2, 3
 /// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
-  // let (ip, the_port) = info::get_server_address();
-  // let name = info::get_creature_name();
-  // let level = info::mutate_to_level(&name); // later add to the server someway
+  let (ip, the_port) = info::get_server_address();
+  let name = info::get_creature_name();
+  let level = info::mutate_to_level(&name); // later add to the server someway
   
   // dev gap
-  let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
-  let the_port = 8000;
-  let name = "client";
+  // let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
+  // let the_port = 8000;
+  // let name = "client";
   // end of dev gap
   
   let id = info::mutate_to_id(&name);

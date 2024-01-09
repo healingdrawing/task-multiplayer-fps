@@ -1,3 +1,4 @@
+use crate::level::can_move_to;
 use crate::protocol::Direction;
 use crate::protocol::*;
 use crate::shared::{shared_config, shared_movement_behaviour};
@@ -66,7 +67,14 @@ impl Plugin for MyClientPlugin {
       FixedUpdate,
       buffer_input.in_set(InputSystemSet::BufferInputs),
     );
-    app.add_systems(FixedUpdate, player_movement.in_set(FixedUpdateSet::Main));
+    app.add_systems(
+      FixedUpdate,
+      player_movement.in_set(FixedUpdateSet::Main)
+    );
+    app.add_systems(
+      FixedUpdate,
+      player_shot.in_set(FixedUpdateSet::Main)
+    );
     
     // app.add_systems(FixedUpdate, update_camera_position.in_set(FixedUpdateSet::Main));
     
@@ -212,6 +220,63 @@ pub(crate) fn buffer_input(
         for mut position in position_query.iter_mut() {
           shared_movement_behaviour(&mut position, input);
         }
+      }
+    }
+  }
+  
+  fn player_shot(
+    plugin: Res<MyClientPlugin>,
+    mut position_query: Query<(&mut PlayerPosition, &PlayerId), With<Predicted>>,
+    mut input_reader: EventReader<InputEvent<Inputs>>,
+  ) {
+    if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+    for input in input_reader.read() {
+      if let Some(input) = input.input() {
+        let mut combinations = position_query.iter_combinations_mut();
+        
+        match input {
+          Inputs::Delete => {
+            println!("inside player_shot after input is Delete {:?}", input); //fires CORRECT
+
+            while let Some([(position1, id1), (mut position2, id2)]) = combinations.fetch_next() {
+              println!("inside player_shot while after combinations fetch_next"); // NEVER FIRES
+              if id1.0 == plugin.client_id
+              && position1.x > 1.0 && position1.x < 23.0
+              && position1.y > 1.0 && position1.y < 23.0
+              // additional filter for potential hit to other players, not sure it is good idea
+              && position2.x > 1.0 && position2.x < 23.0
+              && position2.y > 1.0 && position2.y < 23.0
+              {
+                // todo: detect the hit to other players in front of the player
+                
+                println!("inside shot after player id check: {:?}", position2);
+                
+                // collect all level cells in front of the player, before the wall
+                let mut cells = Vec::new();
+                // increment to front of the player
+                let (dx, dy) = match position1.z as i32 {
+                  0 => (1.0, 0.0),
+                  90 => (0.0, 1.0),
+                  180 => (-1.0, 0.0),
+                  270 => (0.0, -1.0),
+                  _ => (0.0, 0.0),
+                };
+                let (cx, cy) = (position1.x + dx, position1.y + dy);
+                while can_move_to(cx,cy) { cells.push((cx, cy)); }
+                
+                if cells.contains(&(position2.x, position2.y)) {
+                  position2.x = 25.0;
+                  println!("delete after shot: {:?}", position2);
+                }
+                
+                
+              }
+            }
+          },
+          _ => {},
+        }
+        
+        
       }
     }
   }
