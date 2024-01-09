@@ -1,4 +1,3 @@
-use crate::client::MyClientPlugin;
 use crate::level::can_move_to;
 use crate::protocol::*;
 use bevy::prelude::*;
@@ -90,6 +89,7 @@ pub(crate) fn shared_movement_behaviour(
       && position.y > 1.0 && position.y < 23.0
       {
         // todo: detect the hit to other players in front of the player
+        
         // println!("shared.rs Delete: {:?}", position);
       }
     },

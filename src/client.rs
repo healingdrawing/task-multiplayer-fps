@@ -224,23 +224,21 @@ pub(crate) fn buffer_input(
     }
   }
   
-  fn player_shot(
+  pub(crate) fn player_shot(
     plugin: Res<MyClientPlugin>,
-    mut position_query: Query<(&mut PlayerPosition, &PlayerId), With<Predicted>>,
+    mut position_query: Query<(&mut PlayerPosition, &PlayerId), With<Confirmed>>,
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
     if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+    // println!("Found {} entities in query", position_query.iter().count());
     for input in input_reader.read() {
       if let Some(input) = input.input() {
         
         match input {
           Inputs::Delete => {
-            println!("inside player_shot after input is Delete {:?}", input); //fires CORRECT
-            
             let mut combinations = position_query.iter_combinations_mut();
             
             while let Some([(position1, id1), (mut position2, id2)]) = combinations.fetch_next() {
-              println!("inside player_shot while after combinations fetch_next"); // NEVER FIRES
               if id1.0 == plugin.client_id
               && position1.x > 1.0 && position1.x < 23.0
               && position1.y > 1.0 && position1.y < 23.0
@@ -248,9 +246,8 @@ pub(crate) fn buffer_input(
               && position2.x > 1.0 && position2.x < 23.0
               && position2.y > 1.0 && position2.y < 23.0
               {
-                // todo: detect the hit to other players in front of the player
                 
-                println!("inside shot after player id check: {:?}", position2);
+                println!("inside shot after player id check:\n{:?}", position2);
                 
                 // collect all level cells in front of the player, before the wall
                 let mut cells = Vec::new();
@@ -262,12 +259,17 @@ pub(crate) fn buffer_input(
                   270 => (0.0, -1.0),
                   _ => (0.0, 0.0),
                 };
-                let (cx, cy) = (position1.x + dx, position1.y + dy);
-                while can_move_to(cx,cy) { cells.push((cx, cy)); }
-                
+                let (mut cx, mut cy) = (position1.x + dx, position1.y + dy);
+                while can_move_to(cx,cy) {
+                  cells.push((cx, cy));
+                  cx += dx;
+                  cy += dy;
+                }
+                 
+                // does not affect the position of the target, but demonstrates 25.0 in the print
                 if cells.contains(&(position2.x, position2.y)) {
                   position2.x = 25.0;
-                  println!("delete after shot: {:?}", position2);
+                  println!("delete after shot hit:\n{:?}", position2);
                 }
                 
                 
