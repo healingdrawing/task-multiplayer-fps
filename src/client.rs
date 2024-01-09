@@ -232,12 +232,13 @@ pub(crate) fn buffer_input(
     if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
     for input in input_reader.read() {
       if let Some(input) = input.input() {
-        let mut combinations = position_query.iter_combinations_mut();
         
         match input {
           Inputs::Delete => {
             println!("inside player_shot after input is Delete {:?}", input); //fires CORRECT
-
+            
+            let mut combinations = position_query.iter_combinations_mut();
+            
             while let Some([(position1, id1), (mut position2, id2)]) = combinations.fetch_next() {
               println!("inside player_shot while after combinations fetch_next"); // NEVER FIRES
               if id1.0 == plugin.client_id
