@@ -47,7 +47,7 @@ impl Plugin for MyServerPlugin {
     app.add_plugins(server::ServerPlugin::new(plugin_config));
     app.add_plugins(shared::SharedPlugin);
     app.init_resource::<Global>();
-    app.add_systems(Startup, init);
+    // app.add_systems(Startup, init); //todo: attempt to decrease the used sources
     // the physics/FixedUpdates systems that consume inputs should be run in this set
     app.add_systems(FixedUpdate, movement.in_set(FixedUpdateSet::Main));
     app.add_systems(FixedUpdate, shooting.in_set(FixedUpdateSet::Main));

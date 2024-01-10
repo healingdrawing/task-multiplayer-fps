@@ -3,7 +3,7 @@ use crate::protocol::Direction;
 use crate::protocol::*;
 use crate::shared::{shared_config, shared_movement_behaviour, shared_player_shot};
 use crate::{Transports, KEY, PROTOCOL_ID};
-use bevy::prelude::*;
+use bevy::{prelude::*, time};
 use bevy::render::view::RenderLayers;
 use lightyear::prelude::client::*;
 use lightyear::{prelude::*, inputs};
@@ -90,6 +90,8 @@ impl Plugin for MyClientPlugin {
         draw_boxes,
         draw_lines,
         update_camera_position,
+        check_game_over,
+        check_hit,
       ),
     );
   }
@@ -502,3 +504,78 @@ pub(crate) fn buffer_input(
     }
   }
   
+  /// System that exits the game when the player position.x is 25.0, after two seconds
+  fn check_game_over(
+    mut quit_timer: Local<Option<Timer>>,
+    mut exit: EventWriter<bevy::app::AppExit>,
+    mut players: Query<(&PlayerPosition, &PlayerId), With<Confirmed>>,
+    plugin: Res<MyClientPlugin>,
+    time: Res<Time>,
+  ) {
+    for (position, player_id) in &mut players.iter_mut() {
+      if player_id.0 == plugin.client_id {
+        
+        // check the timer is finished
+        if let Some(timer) = quit_timer.as_mut() {
+          if timer.tick(time.delta()).finished() {
+            exit.send(bevy::app::AppExit);
+          }
+        }
+
+        // start timer once
+        if position.x > 24.0 && quit_timer.is_none() {
+          *quit_timer = Some(Timer::from_seconds(2.0, TimerMode::Once));
+        }
+
+      }
+    }
+  }
+  
+  /// System which simulate the player was affected by shot
+  fn check_hit(
+    mut gizmos: Gizmos,
+    mut players: Query<(&PlayerPosition, &PlayerId), With<Confirmed>>,
+    plugin: Res<MyClientPlugin>,
+  ){
+    for (position, player_id) in &mut players.iter_mut() {
+      if player_id.0 == plugin.client_id {
+        
+        if position.x > 24.0 {
+          let look_at_target = match position.z as i32 {
+            0 => Vec3::new(position.x + 0.4 , position.y, 0.0),
+            90 => Vec3::new(position.x, position.y + 0.4, 0.0),
+            180 => Vec3::new(position.x - 0.4, position.y, 0.0),
+            270 => Vec3::new(position.x, position.y - 0.4, 0.0),
+            _ => Vec3::new(position.x, position.y, 0.0),
+          };
+          
+          // randomize the start point of the shot around circle
+          // use dx, dy pairs to randomize the start point of the shot
+          let (d, dz) = circle_xy(0.05);
+          let look_from = match position.z as i32 {
+            0 => Vec3::new(position.x - 0.5 , position.y + d, dz),
+            90 => Vec3::new(position.x + d, position.y - 0.5, dz),
+            180 => Vec3::new(position.x + 0.5, position.y + d, dz),
+            270 => Vec3::new(position.x + d, position.y + 0.5, dz),
+            _ => Vec3::new(position.x + d, position.y, dz),
+          };
+          
+          gizmos.line(
+            look_from,
+            look_at_target,
+            Color::RED,
+          );
+          
+          let normal = match position.z as i32 {
+            0 => Vec3::X,
+            90 => Vec3::Y,
+            180 => Vec3::X,
+            270 => Vec3::Y,
+            _ => Vec3::Z,
+          };
+          gizmos.circle(look_at_target, normal, radius(0.5), Color::RED);
+        }
+
+      }
+    }
+  }
