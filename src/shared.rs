@@ -84,15 +84,6 @@ pub(crate) fn shared_movement_behaviour(
         // println!("position.z: {}", position.z); // todo: remove this
       }
     },
-    Inputs::Delete => {
-      if position.x > 1.0 && position.x < 23.0
-      && position.y > 1.0 && position.y < 23.0
-      {
-        // todo: detect the hit to other players in front of the player
-        
-        // println!("shared.rs Delete: {:?}", position);
-      }
-    },
     _ => {}
   }
 }
@@ -115,5 +106,19 @@ pub(crate) fn update_player_positions(
     
     // println!("position: {:?}", position); // todo: remove this (spamming every frame)
     
+  }
+}
+
+pub(crate) fn shared_player_shot(
+  position: &mut PlayerPosition,
+  cells: &mut Vec<(f32, f32)>,
+) {
+  
+  if position.x > 1.0 && position.x < 23.0
+  && position.y > 1.0 && position.y < 23.0
+  && cells.contains(&(position.x, position.y))
+  {
+    position.x = 25.0;
+    println!("shared player shot. delete after shot hit:\n{:?}", position);
   }
 }

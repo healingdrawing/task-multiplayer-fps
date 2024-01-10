@@ -1,7 +1,7 @@
 use crate::level::can_move_to;
 use crate::protocol::Direction;
 use crate::protocol::*;
-use crate::shared::{shared_config, shared_movement_behaviour};
+use crate::shared::{shared_config, shared_movement_behaviour, shared_player_shot};
 use crate::{Transports, KEY, PROTOCOL_ID};
 use bevy::prelude::*;
 use bevy::render::view::RenderLayers;
@@ -73,7 +73,7 @@ impl Plugin for MyClientPlugin {
     );
     app.add_systems(
       FixedUpdate,
-      player_shot.in_set(FixedUpdateSet::Main)
+      player_shot.in_set(FixedUpdateSet::Main),
     );
     
     // app.add_systems(FixedUpdate, update_camera_position.in_set(FixedUpdateSet::Main));
@@ -226,62 +226,56 @@ pub(crate) fn buffer_input(
   
   pub(crate) fn player_shot(
     plugin: Res<MyClientPlugin>,
-    mut position_query: Query<(&mut PlayerPosition, &PlayerId), With<Confirmed>>,
+    mut position_query: Query<(&mut PlayerPosition, &PlayerId)>,
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
-    if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+    // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
     // println!("Found {} entities in query", position_query.iter().count());
+    
     for input in input_reader.read() {
       if let Some(input) = input.input() {
-        
         match input {
           Inputs::Delete => {
-            let mut combinations = position_query.iter_combinations_mut();
             
-            while let Some([(position1, id1), (mut position2, id2)]) = combinations.fetch_next() {
-              if id1.0 == plugin.client_id
-              && position1.x > 1.0 && position1.x < 23.0
-              && position1.y > 1.0 && position1.y < 23.0
-              // additional filter for potential hit to other players, not sure it is good idea
-              && position2.x > 1.0 && position2.x < 23.0
-              && position2.y > 1.0 && position2.y < 23.0
-              {
+            // first fill the cells affected by the shot
+            let mut cells = Vec::new();
+            
+            for (position, player_id) in &mut position_query.iter_mut() {
+              if player_id.0 == plugin.client_id
+              && position.x > 1.0 && position.x < 23.0
+              && position.y > 1.0 && position.y < 23.0{
                 
-                println!("inside shot after player id check:\n{:?}", position2);
-                
-                // collect all level cells in front of the player, before the wall
-                let mut cells = Vec::new();
                 // increment to front of the player
-                let (dx, dy) = match position1.z as i32 {
+                let (dx, dy) = match position.z as i32 {
                   0 => (1.0, 0.0),
                   90 => (0.0, 1.0),
                   180 => (-1.0, 0.0),
                   270 => (0.0, -1.0),
                   _ => (0.0, 0.0),
                 };
-                let (mut cx, mut cy) = (position1.x + dx, position1.y + dy);
+                let (mut cx, mut cy) = (position.x + dx, position.y + dy);
                 while can_move_to(cx,cy) {
                   cells.push((cx, cy));
                   cx += dx;
                   cy += dy;
                 }
-                 
-                // does not affect the position of the target, but demonstrates 25.0 in the print
-                if cells.contains(&(position2.x, position2.y)) {
-                  position2.x = 25.0;
-                  println!("delete after shot hit:\n{:?}", position2);
-                }
-                
                 
               }
             }
+            
+            // then check if any other player is in the cells
+            for (mut position, player_id) in &mut position_query.iter_mut() {
+              
+              shared_player_shot(&mut position, &mut cells);
+              
+            }
+            
           },
           _ => {},
         }
-        
-        
       }
     }
+    
   }
   
   // System to receive messages on the client
