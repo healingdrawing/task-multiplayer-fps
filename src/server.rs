@@ -36,7 +36,7 @@ impl Plugin for MyServerPlugin {
       },
     };
     let io = Io::from_config(
-      &IoConfig::from_transport(transport).with_conditioner(link_conditioner),
+      IoConfig::from_transport(transport).with_conditioner(link_conditioner),
     );
     let config = ServerConfig {
       shared: shared_config().clone(),
@@ -109,7 +109,7 @@ pub(crate) fn movement(
   mut position_query: Query<&mut PlayerPosition>,
   mut input_reader: EventReader<InputEvent<Inputs>>,
   global: Res<Global>,
-  server: Res<Server<MyProtocol>>,
+  server: Res<Server>,
 ) {
   for input in input_reader.read() {
     let client_id = input.context();
@@ -134,7 +134,7 @@ pub(crate) fn shooting(
   mut position_query: Query<&mut PlayerPosition>,
   mut input_reader: EventReader<InputEvent<Inputs>>,
   global: Res<Global>,
-  server: Res<Server<MyProtocol>>,
+  server: Res<Server>,
 ) {
   for input in input_reader.read() {
     let client_id = input.context();
@@ -199,7 +199,7 @@ pub(crate) fn shooting(
 
 /// Send messages from server to clients (only in non-headless mode, because otherwise we run with minimal plugins
   /// and cannot do input handling)
-  pub(crate) fn send_message(mut server: ResMut<Server<MyProtocol>>, input: Res<Input<KeyCode>>) {
+  pub(crate) fn send_message(mut server: ResMut<Server>, input: Res<Input<KeyCode>>) {
     if input.pressed(KeyCode::M) {
       // TODO: add way to send message to all
       let message = Message1(5);

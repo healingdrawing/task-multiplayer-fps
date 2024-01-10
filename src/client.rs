@@ -45,7 +45,7 @@ impl Plugin for MyClientPlugin {
       },
     };
     let io = Io::from_config(
-      &IoConfig::from_transport(transport).with_conditioner(link_conditioner),
+      IoConfig::from_transport(transport).with_conditioner(link_conditioner),
     );
     let config = ClientConfig {
       shared: shared_config().clone(),
@@ -100,7 +100,7 @@ impl Plugin for MyClientPlugin {
 // Startup system for the client
 pub(crate) fn init(
   mut commands: Commands,
-  mut client: ResMut<Client<MyProtocol>>, // Add the missing generic argument
+  mut client: ResMut<Client>, // Add the missing generic argument
   plugin: Res<MyClientPlugin>,
 ) {
   // commands.spawn(Camera3dBundle::default());
@@ -132,7 +132,7 @@ pub struct KeyStates {
 
 // System that reads from peripherals and adds inputs to the buffer
 pub(crate) fn buffer_input(
-  mut client: ResMut<Client<MyProtocol>>,
+  mut client: ResMut<Client>,
   mut key_states: ResMut<KeyStates>,
   keypress: Res<Input<KeyCode>>
 ) {

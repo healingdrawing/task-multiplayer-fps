@@ -97,6 +97,7 @@ async fn main() {
   let mut app = App::new();
   
   // INJECTION fps on screen etc. Later can move to setup(), when it will be more clear
+  /*
   app.add_plugins((
     DefaultPlugins.set(
       WindowPlugin {
@@ -122,6 +123,8 @@ async fn main() {
       change_window_title,
     )
   );
+  */
+  
   app.insert_resource(KeyStates::default() );
   
   setup(&mut app, cli);
@@ -194,6 +197,22 @@ fn setup(app: &mut App, cli: Cli) {
         transport,
       };
       if !headless {
+        
+        app.add_plugins((
+          DefaultPlugins.set(
+            WindowPlugin {
+              primary_window: Some(
+                Window {
+                  resolution: (100., 100.).into(),
+                  title: "server window".into(),
+                  ..default()
+                }
+              ),
+              ..default()
+            }
+          ).disable::<LogPlugin>(),
+        ));
+        
         // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
       } else {
         app.add_plugins(MinimalPlugins);
@@ -218,8 +237,36 @@ fn setup(app: &mut App, cli: Cli) {
         server_port,
         transport,
       };
+      
+      app.add_plugins((
+        DefaultPlugins.set(
+          WindowPlugin {
+            primary_window: Some(
+              Window {
+                resolution: (1000., 1000.).into(),
+                title: "Thank you for your help! I want to complete it before February".into(),
+                ..default()
+              }
+            ),
+            ..default()
+          }
+        ).disable::<LogPlugin>(),
+        EguiPlugin,
+        // LogDiagnosticsPlugin::default(), // to print fps in terminal
+        FrameTimeDiagnosticsPlugin::default(),
+      ));
+      // app.insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)));
+      app.add_systems(
+        Update,
+        (
+          show_fps_ui,
+          change_window_title,
+        )
+      );
+      
       app.add_plugins(client_plugin);
       // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
+      
       if inspector {
         app.add_plugins(WorldInspectorPlugin::new());
       }
@@ -241,10 +288,10 @@ fn startup_setup(
   mut gizmo_config: ResMut<GizmoConfig>,
   asset_server: Res<AssetServer>
 ) {
-
+  
   // make lines fat
   gizmo_config.line_width = 3.0;
-
+  
   // --------------------------------------------
   // global camera. Must display the whole level.
   // Must be in front of the player cell.
@@ -264,16 +311,16 @@ fn startup_setup(
       },
       transform: Transform::from_xyz(2.0, 2.0, 1.0)
       .looking_at(Vec3::new(2.0, 22.0, 0.0), Vec3::Z),
-
+      
       projection: PerspectiveProjection {
         fov: 90.0 * PI / 180.0,
         ..default()
       }.into(),
-
+      
       ..default()
     },
     MyCameraMarker,
-
+    
     /*
     EnvironmentMapLight {
       diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
@@ -315,10 +362,17 @@ fn startup_setup(
     },
     UiCameraConfig { show_ui: false, },
   ));
-
+  
+  
+  // ambient light
+  commands.insert_resource(AmbientLight {
+    color: Color::WHITE,
+    brightness: 1.0,
+  });
   
   commands.spawn(DirectionalLightBundle {
     directional_light: DirectionalLight {
+      color: Color::RED,
       shadows_enabled: true,
       ..default()
     },
@@ -336,13 +390,13 @@ fn startup_setup(
     scene: asset_server.load("level1.gltf#Scene0"),
     ..default()
   });
-
+  
   // minimap
   commands.spawn(SceneBundle {
     scene: asset_server.load("level1.gltf#Scene0"),
     transform: Transform::from_translation(Vec3::new(-25.0, 0.0, 0.0)),
     ..Default::default()
- });
+  });
   
   
 }
