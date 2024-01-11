@@ -107,11 +107,10 @@ pub fn mutate_to_id(name: &str) -> u16 {
 /// 
 /// used only for server init,
 /// then the server send to client the level number, to render the gltf model
-pub fn mutate_to_level(name: &str) -> u8 {
+pub fn mutate_to_level(port: &str) -> u8 {
   let level;
-  if name.starts_with("1") { level = 1; }
-  else if name.starts_with("2") { level = 2; }
-  else if name.starts_with("3") { level = 3; }
-  else { level = rand::random::<u8>() % 3 + 1; }
+  if port.ends_with("3") { level = 3; }
+  else if port.ends_with("2") { level = 2; }
+  else { level = 1; }
   level
 }

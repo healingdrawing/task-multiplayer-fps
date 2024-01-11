@@ -53,15 +53,17 @@ use lightyear::netcode::{ClientId, Key};
 use lightyear::prelude::TransportConfig;
 
 
+use std::sync::OnceLock;
 // hardcoded, to simplify the code
-pub const GAME_LEVEL: u8 = 1; // 1, 2, 3
+static GAME_LEVEL: OnceLock<u8> = OnceLock::new();
 
 /// it is a hybrid client or server
 #[tokio::main]
 async fn main() {
   let (ip, the_port) = info::get_server_address();
   let name = info::get_creature_name();
-  let level = info::mutate_to_level(&name); // later add to the server someway
+  // let level = info::mutate_to_level(&the_port.to_string()); // not a best time for adventures
+  let level = GAME_LEVEL.get_or_init(|| info::mutate_to_level(&the_port.to_string()) );
   
   // dev gap
   // let ip = Ipv4Addr::from_str(&"127.0.0.1").unwrap();
@@ -79,14 +81,14 @@ async fn main() {
     Cli::Server { port  , .. } => {
       *port = the_port;
       println!("Server is running on {}:{}...", ip, port);
-      println!("Game level is {}", GAME_LEVEL);
+      println!("Game level is {}", level);
     },
     Cli::Client {client_id, server_addr, server_port, .. } => {
       *client_id = id;
       *server_addr = ip;
       *server_port = the_port;
       println!(
-        "Client \"{}\" with id \"{}\" is trying to call {}:{}...",
+        "Client \"{}\" with id \"{}\" is trying to call {}:{}",
         name, id,
         server_addr, server_port
       );
@@ -385,18 +387,24 @@ fn startup_setup(
     ..default()
   });
   
+  let level_gltf_path = match GAME_LEVEL.get_or_init(|| unreachable!()){
+    1 => "level1.gltf#Scene0",
+    2 => "level2.gltf#Scene0",
+    3 => "level3.gltf#Scene0",
+    _ => unreachable!(),
+  };
+
   // perspective world
   commands.spawn(SceneBundle {
-    scene: asset_server.load("level1.gltf#Scene0"),
+    scene: asset_server.load(level_gltf_path),
     ..default()
   });
   
   // minimap
   commands.spawn(SceneBundle {
-    scene: asset_server.load("level1.gltf#Scene0"),
+    scene: asset_server.load(level_gltf_path),
     transform: Transform::from_translation(Vec3::new(-25.0, 0.0, 0.0)),
     ..Default::default()
   });
-  
   
 }

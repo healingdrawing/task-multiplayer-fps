@@ -103,9 +103,6 @@ pub(crate) fn init(
   mut client: ResMut<Client>, // Add the missing generic argument
   plugin: Res<MyClientPlugin>,
 ) {
-  // commands.spawn(Camera3dBundle::default());
-  
-  // commands.spawn(Camera2dBundle::default()); // todo: replace to 3d camera with gltf scene loaded from file
   
   commands.spawn(TextBundle::from_section(
     format!("Client {}", plugin.client_id),
@@ -214,7 +211,9 @@ pub(crate) fn buffer_input(
     mut position_query: Query<&mut PlayerPosition, With<Predicted>>,
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
+
     // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+
     for input in input_reader.read() {
       if let Some(input) = input.input() {
         for mut position in position_query.iter_mut() {
@@ -229,6 +228,7 @@ pub(crate) fn buffer_input(
     mut position_query: Query<(&mut PlayerPosition, &PlayerId)>,
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
+    
     // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
     
     // println!("Found {} entities in query", position_query.iter().count());

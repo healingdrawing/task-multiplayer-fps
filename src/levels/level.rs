@@ -3,6 +3,8 @@ use bevy::math::Vec3;
 use crate::GAME_LEVEL;
 
 use crate::levels::level1::LEVEL1;
+use crate::levels::level2::LEVEL2;
+use crate::levels::level3::LEVEL3;
 
 /// check the cell of the level is able to be used as moving target
 /// 
@@ -13,9 +15,11 @@ pub fn can_move_to(x:f32, y:f32) -> bool{
   // 2 and 22 is 0..24 +- 2(two first/last cells which is border and spawn area)
   if x < 2 || x > 22 || y < 2 || y > 22{return false}
   
-  match GAME_LEVEL{
+  match GAME_LEVEL.get_or_init(|| unreachable!()){
     1 => {LEVEL1[y][x] == 0}, // if cell of level1 is 0 (empty), can move to it
-    _ => {false} //todo: extend to LEVEL2 and LEVEL3, properly
+    2 => {LEVEL2[y][x] == 0},
+    3 => {LEVEL3[y][x] == 0},
+    _ => {false} // should never happen
   }
 }
 
