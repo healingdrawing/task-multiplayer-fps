@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="400"
+   height="400"
+   viewBox="0 0 400 400.00002"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   sodipodi:docname="raw-gui-flow.svg"
+   inkscape:export-filename="../../../../Desktop/raw-gui-flow.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="false"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#3f3f3f"
+     inkscape:document-units="px"
+     labelstyle="default"
+     inkscape:zoom="0.5263672"
+     inkscape:cx="171.93321"
+     inkscape:cy="265.97402"
+     inkscape:window-width="1536"
+     inkscape:window-height="840"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showborder="true"
+     inkscape:clip-to-page="false"
+     showguides="true"
+     guidecolor="#ffffff"
+     guideopacity="0.6">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="-39.5"
+       originy="-11.5"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#e5e500"
+       empopacity="0.30196078"
+       color="#e5e500"
+       opacity="0.14901961"
+       empspacing="4"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="false" />
+    <sodipodi:guide
+       position="-27.500001,412.50001"
+       orientation="1,0"
+       id="guide1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-45.500001,398.50001"
+       orientation="0,-1"
+       id="guide2"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0.49999918,282.50001"
+       orientation="0,-1"
+       id="guide3"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0.49999918,382.50001"
+       orientation="1,0"
+       id="guide4"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <color-profile
+       name="Compatible-with-Adobe-RGB-1998"
+       xlink:href="file:///usr/share/color/icc/colord/AdobeRGB1998.icc"
+       id="color-profile2" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-39.5,-11.499999)">
+    <rect
+       style="fill:#000000;stroke:#000000;paint-order:markers stroke fill;fill-opacity:1"
+       id="rect2"
+       width="538.16284"
+       height="541.76538"
+       x="-33.177696"
+       y="-62.800385" />
+    <rect
+       style="fill:#4d4d4d;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect1"
+       width="199"
+       height="199"
+       x="40"
+       y="11.999999"
+       ry="0" />
+    <rect
+       style="fill:#4d4d4d;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect1-7"
+       width="199"
+       height="199"
+       x="40"
+       y="211"
+       ry="0" />
+    <rect
+       style="fill:#4d4d4d;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect1-6"
+       width="199"
+       height="199"
+       x="239"
+       y="211"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="286.6676"
+       y="233.86263"
+       id="text4-6-2-3-4"><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="233.86263"
+         style="stroke-width:0.999999"
+         id="tspan12-5">this screen is fully</tspan><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="247.07846"
+         style="stroke-width:0.999999"
+         id="tspan16">covered by 3d camera</tspan><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="260.29431"
+         style="stroke-width:0.999999"
+         id="tspan17">the size is 1000x1000px</tspan><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="273.51013"
+         style="stroke-width:0.999999"
+         id="tspan18">also some stats and</tspan><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="286.72598"
+         style="stroke-width:0.999999"
+         id="tspan19">minimap planned above</tspan><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="299.94183"
+         style="stroke-width:0.999999"
+         id="tspan20">3d camera rendering.</tspan><tspan
+         sodipodi:role="line"
+         x="286.6676"
+         y="313.15765"
+         style="stroke-width:0.999999"
+         id="tspan22">Camera is perspective</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="70.055252"
+       y="41.944153"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         x="70.055252"
+         y="41.944153"
+         style="stroke-width:0.999999">choose server ip:port</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:21.3333px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-4px;fill:#ededed;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="40"
+       y="43.687557"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         x="40"
+         y="43.687557">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:21.3333px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-4px;fill:#ededed;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="40"
+       y="240.91153"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         x="40"
+         y="240.91153">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:21.3333px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-4px;fill:#ededed;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="262.67538"
+       y="243.59711"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         x="262.67538"
+         y="243.59711">3</tspan></text>
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect7"
+       width="134.25519"
+       height="17.907146"
+       x="70.483154"
+       y="56.557472" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:21.3333px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-4px;fill:#ededed;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="89.580414"
+       y="74.464622"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         x="89.580414"
+         y="74.464622" /></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="76.497238"
+       y="69.704254"
+       id="text4-6"><tspan
+         sodipodi:role="line"
+         id="tspan4-1"
+         x="76.497238"
+         y="69.704254"
+         style="stroke-width:0.999999">input here ...</tspan></text>
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect8"
+       width="134.32178"
+       height="27.953266"
+       x="70.249092"
+       y="86.406929"
+       ry="9.9504843" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="78.359688"
+       y="102.95326"
+       id="text4-6-2"><tspan
+         sodipodi:role="line"
+         id="tspan4-1-0"
+         x="78.359688"
+         y="102.95326"
+         style="stroke-width:0.999999">press to connect</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="73.849373"
+       y="154.12347"
+       id="text4-6-2-3"><tspan
+         sodipodi:role="line"
+         id="tspan4-1-0-6"
+         x="73.849373"
+         y="154.12347"
+         style="stroke-width:0.999999">when connections</tspan><tspan
+         sodipodi:role="line"
+         x="73.849373"
+         y="167.33931"
+         style="stroke-width:0.999999"
+         id="tspan11">established the next</tspan><tspan
+         sodipodi:role="line"
+         x="73.849373"
+         y="180.55516"
+         style="stroke-width:0.999999"
+         id="tspan12">screen (2) appears</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="75.578087"
+       y="346.35754"
+       id="text4-6-2-3-3"><tspan
+         sodipodi:role="line"
+         id="tspan4-1-0-6-2"
+         x="75.578087"
+         y="346.35754"
+         style="stroke-width:0.999999">when name chosen</tspan><tspan
+         sodipodi:role="line"
+         x="75.578087"
+         y="359.57339"
+         style="stroke-width:0.999999"
+         id="tspan11-0">the next</tspan><tspan
+         sodipodi:role="line"
+         x="75.578087"
+         y="372.78922"
+         style="stroke-width:0.999999"
+         id="tspan12-6">screen (3) appears</tspan><tspan
+         sodipodi:role="line"
+         x="75.578087"
+         y="386.00507"
+         style="stroke-width:0.999999"
+         id="tspan13">it is the main game</tspan><tspan
+         sodipodi:role="line"
+         x="75.578087"
+         y="399.22092"
+         style="stroke-width:0.999999"
+         id="tspan14">screen</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="72.421959"
+       y="245.70378"
+       id="text4-2"><tspan
+         sodipodi:role="line"
+         id="tspan4-9"
+         x="72.421959"
+         y="245.70378"
+         style="stroke-width:0.999999">choose your name</tspan></text>
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect7-3"
+       width="134.25519"
+       height="17.907146"
+       x="72.849861"
+       y="260.31711" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="78.863945"
+       y="273.46387"
+       id="text4-6-1"><tspan
+         sodipodi:role="line"
+         id="tspan4-1-9"
+         x="78.863945"
+         y="273.46387"
+         style="stroke-width:0.999999">input here ...</tspan></text>
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect8-4"
+       width="134.32178"
+       height="33.09264"
+       x="72.615799"
+       y="290.16656"
+       ry="11.77994" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="80.726395"
+       y="306.71289"
+       id="text4-6-2-7"><tspan
+         sodipodi:role="line"
+         id="tspan4-1-0-8"
+         x="80.726395"
+         y="306.71289"
+         style="stroke-width:0.999999">press to try join</tspan><tspan
+         sodipodi:role="line"
+         x="80.726395"
+         y="319.92874"
+         style="stroke-width:0.999999"
+         id="tspan9">the game</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:21.3333px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-4px;fill:#ededed;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="93.76815"
+       y="167.49817"
+       id="text10"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         x="93.76815"
+         y="167.49817" /></text>
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect20"
+       width="39"
+       height="39"
+       x="239.35376"
+       y="370.62439"
+       ry="0" />
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect20-8"
+       width="39"
+       height="39"
+       x="309.93872"
+       y="370.75507"
+       ry="0" />
+    <rect
+       style="fill:#7b7b7b;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect20-4"
+       width="39"
+       height="39"
+       x="356.17191"
+       y="370.80295"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="243.07379"
+       y="366.61206"
+       id="text4-6-2-3-7"><tspan
+         sodipodi:role="line"
+         x="243.07379"
+         y="366.61206"
+         style="stroke-width:0.999999"
+         id="tspan12-2">minimap</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:11.0132px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-2.06498px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="322.23987"
+       y="362.26773"
+       id="text4-6-2-3-7-4"><tspan
+         sodipodi:role="line"
+         x="322.23987"
+         y="362.26773"
+         style="stroke-width:0.999999"
+         id="tspan12-2-4">side views</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.83789px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.09461px;fill:#ededed;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="247.88779"
+       y="34.228481"
+       id="text4-6-2-3-7-8"><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="34.228481"
+         style="stroke-width:0.999999"
+         id="tspan12-2-9">the minimap - is orthogonal 3d camera</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="41.233952"
+         style="stroke-width:0.999999"
+         id="tspan23">view to level from top</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="48.239418"
+         style="stroke-width:0.999999"
+         id="tspan24" /><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="55.244888"
+         style="stroke-width:0.999999"
+         id="tspan25">side views is x2 3d perspective</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="62.250355"
+         style="stroke-width:0.999999"
+         id="tspan26">cameras which will render left and</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="69.255821"
+         style="stroke-width:0.999999"
+         id="tspan28">right views in case of look around the corner.</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="76.261292"
+         style="stroke-width:0.999999"
+         id="tspan29">so the cameras will be one cell forward directed</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="83.266762"
+         style="stroke-width:0.999999"
+         id="tspan30">from present player position. cell is 1x1 meter</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="90.272232"
+         style="stroke-width:0.999999"
+         id="tspan31">of geometry space of blender gltf(planned)</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="97.277695"
+         style="stroke-width:0.999999"
+         id="tspan32" /><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="104.28316"
+         style="stroke-width:0.999999"
+         id="tspan33">when gameover happens, the screen (1) appears again</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="111.28864"
+         style="stroke-width:0.999999"
+         id="tspan34" /><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="118.29411"
+         style="stroke-width:0.999999"
+         id="tspan35">I can not find any user friendly toturial/examples</tspan><tspan
+         sodipodi:role="line"
+         x="247.88779"
+         y="125.29957"
+         style="stroke-width:0.999999"
+         id="tspan36">to implement it properly</tspan></text>
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="https://healingdrawing.github.io/info/license/fpl.html" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
