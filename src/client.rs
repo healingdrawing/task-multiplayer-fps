@@ -214,9 +214,7 @@ pub(crate) fn buffer_input(
     mut position_query: Query<&mut PlayerPosition, With<Predicted>>,
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
-    if PlayerPosition::mode() != ComponentSyncMode::Full {
-      return;
-    }
+    // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
     for input in input_reader.read() {
       if let Some(input) = input.input() {
         for mut position in position_query.iter_mut() {
@@ -232,6 +230,7 @@ pub(crate) fn buffer_input(
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
     // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+    
     // println!("Found {} entities in query", position_query.iter().count());
     
     for input in input_reader.read() {
@@ -310,7 +309,7 @@ pub(crate) fn buffer_input(
   ) {
     for event in player_spawn.read() {
       let entity = event.entity();
-      if let Ok(player_id) = players.get(*entity) {
+      if let Ok(player_id) = players.get(entity) {
         
         let gltf = SceneBundle {
           scene: asset_server.load("player.gltf#Scene0"),
@@ -322,7 +321,7 @@ pub(crate) fn buffer_input(
           // commands.entity(*entity).insert(gltf);
         } else {
           // this is another player GLOBAL
-          commands.entity(*entity)
+          commands.entity(entity)
           .insert(gltf);
         }
       }
@@ -405,9 +404,8 @@ pub(crate) fn buffer_input(
       && position.y > 1.0 && position.y < 23.0
       {
         
-        if PlayerPosition::mode() != ComponentSyncMode::Full {
-          return;
-        }
+        // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+
         for input in input_reader.read() {
           if let Some(input) = input.input() {
             

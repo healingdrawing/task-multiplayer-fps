@@ -9,7 +9,7 @@ edition = "2021"
 bevy = { version = "0.12.1", features = ["bevy_core_pipeline"] }
 bevy_egui = "0.24.0"
 bevy_async_system = "0.1.1"
-lightyear = { git = "https://github.com/cBournhonesque/lightyear.git", features = ["webtransport"] }
+lightyear = { version = "0.6.0", features = ["webtransport"] }
 serde = { version = "1.0.188", features = ["derive"] }
 anyhow = { version = "1.0.75", features = [] }
 tracing = "0.1"
