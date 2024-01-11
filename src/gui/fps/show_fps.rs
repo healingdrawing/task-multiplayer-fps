@@ -1,4 +1,5 @@
 use bevy::{prelude::*, diagnostic::{FrameTimeDiagnosticsPlugin, DiagnosticsStore}} ;
+use bevy_framepace::{FramepaceSettings, Limiter};
 use bevy_egui::{egui::{self, Align2, RichText, Color32, FontId}, EguiContexts};
 
 /// This system will show the FPS on the screen
@@ -22,4 +23,9 @@ pub fn show_fps_ui(
       .font(FontId::proportional(72.0)),
     );
   });
+}
+
+// try fix ticks issue
+pub fn limit_fps_ui(mut settings: ResMut<FramepaceSettings>){
+  settings.limiter = Limiter::from_framerate(60.0);
 }

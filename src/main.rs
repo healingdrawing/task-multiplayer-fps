@@ -7,6 +7,8 @@ use bevy::core_pipeline::clear_color::ClearColorConfig;
 // use bevy::diagnostic::LogDiagnosticsPlugin; // to print fps in terminal
 use bevy::prelude::*;
 use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
+use bevy::winit::WinitSettings;
+use bevy_framepace::FramepacePlugin;
 use bevy_egui::EguiPlugin;
 // gltf
 use bevy::pbr::CascadeShadowConfigBuilder;
@@ -20,6 +22,7 @@ use bevy::render::camera::Viewport;
 mod gui;
 use client::KeyStates;
 use gui::title::show_time::change_window_title;
+use gui::fps::show_fps::limit_fps_ui;
 use gui::fps::show_fps::show_fps_ui;
 
 mod user;
@@ -216,6 +219,11 @@ fn setup(app: &mut App, cli: Cli) {
         ));
         
         // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
+        
+        app.insert_resource(WinitSettings::game()); // try fix ticks issue
+        app.add_plugins(FramepacePlugin); // try fix ticks issue
+        app.add_systems(Startup, limit_fps_ui);
+        
       } else {
         app.add_plugins(MinimalPlugins);
       }
@@ -257,6 +265,11 @@ fn setup(app: &mut App, cli: Cli) {
         // LogDiagnosticsPlugin::default(), // to print fps in terminal
         FrameTimeDiagnosticsPlugin::default(),
       ));
+      
+      app.insert_resource(WinitSettings::game()); // try fix ticks issue
+      app.add_plugins(FramepacePlugin); // try fix ticks issue
+      app.add_systems(Startup, limit_fps_ui);
+      
       // app.insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)));
       app.add_systems(
         Update,
@@ -393,7 +406,7 @@ fn startup_setup(
     3 => "level3.gltf#Scene0",
     _ => unreachable!(),
   };
-
+  
   // perspective world
   commands.spawn(SceneBundle {
     scene: asset_server.load(level_gltf_path),
