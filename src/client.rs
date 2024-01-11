@@ -485,13 +485,13 @@ pub(crate) fn buffer_input(
           _ => Vec3::new(position.x, position.y, 0.0),
         };
         
+        transform.translation.x = look_from.x;
+        transform.translation.y = look_from.y;
+        transform.translation.z = look_from.z;
         transform.look_at(
           look_at_target,
           Vec3::Z,
         );
-        transform.translation.x = look_from.x;
-        transform.translation.y = look_from.y;
-        transform.translation.z = look_from.z;
         // transform.rotation = Quat::from_rotation_z(position.z.to_radians());
         
         break;
