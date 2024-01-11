@@ -1,4 +1,4 @@
-use crate::level::can_move_to;
+use crate::levels::level::can_move_to;
 use crate::protocol::*;
 use bevy::prelude::*;
 use bevy::render::RenderPlugin;

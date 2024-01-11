@@ -25,7 +25,7 @@ use gui::fps::show_fps::show_fps_ui;
 mod user;
 use user::info;
 
-mod level;
+mod levels;
 
 //lightyear section
 // ! Run with

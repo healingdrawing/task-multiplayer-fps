@@ -1,4 +1,4 @@
-use crate::level::{get_random_spawn_position, can_move_to};
+use crate::levels::level::{get_random_spawn_position, can_move_to};
 use crate::protocol::*;
 use crate::shared::{shared_config, shared_movement_behaviour, shared_player_shot};
 use crate::{shared, Transports, KEY, PROTOCOL_ID};

@@ -1,4 +1,4 @@
-use crate::level::can_move_to;
+use crate::levels::level::can_move_to;
 use crate::protocol::Direction;
 use crate::protocol::*;
 use crate::shared::{shared_config, shared_movement_behaviour, shared_player_shot};
