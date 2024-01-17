@@ -60,6 +60,11 @@ Type : network IP from Computer 1 , with port. Example :
 
 Name : Unique Name (Don’t use same on client and server)
 
+### Game levels
+Game begins on level 1 by default. With the exception of : 
+If port number ends with 2, game will start with level 2 map.
+If port number ends with 3, game will start with level 3 map.
+ 
 
 ## Authors
 - [healingdrawing](https://healingdrawing.github.io/)  
