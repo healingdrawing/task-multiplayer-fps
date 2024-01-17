@@ -19,3 +19,4 @@ Cargo.lock
 # ignore executables
 hybrid
 
+**.DS_Store
