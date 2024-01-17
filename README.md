@@ -33,7 +33,8 @@ terminal: `./dev-server`
 terminal: `./dev-client`  
 
 ## How to test between different computers
-### Computer 1 (This computer should be visible on the network to the clients)
+### Computer 1
+**(This computer should be visible on the network to the clients)**
 
 ### Run server
 terminal: `./hybrid server`  
@@ -52,7 +53,7 @@ Name : Unique name (Don’t use same on client and server)
 
 terminal: `ipconfig getifaddr en1`  
 
-### Computer 2  
+### Computer 2
 ### Run client  
 terminal: `./hybrid client`  
 Type : network IP from Computer 1 , with port. Example :  
