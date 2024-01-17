@@ -1,6 +1,7 @@
 # task-multiplayer-fps
 grit:lab Åland Islands 2023  
 
+![demo](demo.png)  
 
 ## Description
 The retro game "Maze Wars" reimplementation using the [rust](https://www.rust-lang.org).  
