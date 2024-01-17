@@ -107,7 +107,7 @@ pub(crate) fn init(
   commands.spawn(TextBundle::from_section(
     format!("Client {}", plugin.client_id),
     TextStyle {
-      font_size: 30.0,
+      font_size: 16.0,
       color: Color::WHITE,
       ..default()
     },

@@ -20,7 +20,7 @@ pub fn show_fps_ui(
     ui.label(
       RichText::new(format!("fps: {}",fps))
       .color(Color32::WHITE)
-      .font(FontId::proportional(72.0)),
+      .font(FontId::proportional(24.0)),
     );
   });
 }

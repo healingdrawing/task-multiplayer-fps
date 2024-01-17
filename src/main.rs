@@ -104,35 +104,6 @@ async fn main() {
   
   app.add_systems(FixedUpdate, force_sleep);
 
-  // INJECTION fps on screen etc. Later can move to setup(), when it will be more clear
-  /*
-  app.add_plugins((
-    DefaultPlugins.set(
-      WindowPlugin {
-        primary_window: Some(
-          Window {
-            resolution: (1000., 1000.).into(),
-            title: "Thank you for your help! I want to complete it before February".into(),
-            ..default()
-          }
-        ),
-        ..default()
-      }
-    ),
-    EguiPlugin,
-    // LogDiagnosticsPlugin::default(), // to print fps in terminal
-    FrameTimeDiagnosticsPlugin::default(),
-  ));
-  // app.insert_resource(ClearColor(Color::rgb(0.53, 0.53, 0.53)));
-  app.add_systems(
-    Update,
-    (
-      show_fps_ui,
-      change_window_title,
-    )
-  );
-  */
-  
   app.insert_resource(KeyStates::default() );
   
   setup(&mut app, cli);
@@ -339,7 +310,7 @@ fn startup_setup(
     },
     MyCameraMarker,
     
-    /*
+    /* it is dead at the moment , replaced by stable low quality ambient light plugin
     EnvironmentMapLight {
       diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
       specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
@@ -361,7 +332,7 @@ fn startup_setup(
       },
       camera: Camera {
         viewport: Some(Viewport {
-          physical_position: UVec2::new(0, 50), // y 750 to bottom
+          physical_position: UVec2::new(375, 750), // y 750 to bottom
           physical_size: UVec2::new(250, 250),
           depth: 0.0..1.0,
         }),
