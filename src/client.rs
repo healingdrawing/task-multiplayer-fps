@@ -100,7 +100,7 @@ impl Plugin for MyClientPlugin {
 // Startup system for the client
 pub(crate) fn init(
   mut commands: Commands,
-  mut client: ResMut<Client>, // Add the missing generic argument
+  mut client: ClientMut, // Add the missing generic argument
   plugin: Res<MyClientPlugin>,
 ) {
   
@@ -129,7 +129,7 @@ pub struct KeyStates {
 
 // System that reads from peripherals and adds inputs to the buffer
 pub(crate) fn buffer_input(
-  mut client: ResMut<Client>,
+  mut client: ClientMut,
   mut key_states: ResMut<KeyStates>,
   keypress: Res<Input<KeyCode>>
 ) {
@@ -211,13 +211,15 @@ pub(crate) fn buffer_input(
     mut position_query: Query<&mut PlayerPosition, With<Predicted>>,
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
-
-    // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
-
+    
+    if <Components as SyncMetadata<PlayerPosition>>::mode() != ComponentSyncMode::Full {
+      return;
+    }
+    
     for input in input_reader.read() {
       if let Some(input) = input.input() {
-        for mut position in position_query.iter_mut() {
-          shared_movement_behaviour(&mut position, input);
+        for position in position_query.iter_mut() {
+          shared_movement_behaviour(position, input);
         }
       }
     }
@@ -229,7 +231,9 @@ pub(crate) fn buffer_input(
     mut input_reader: EventReader<InputEvent<Inputs>>,
   ) {
     
-    // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
+    if <Components as SyncMetadata<PlayerPosition>>::mode() != ComponentSyncMode::Full {
+      return;
+    }
     
     // println!("Found {} entities in query", position_query.iter().count());
     
@@ -404,8 +408,10 @@ pub(crate) fn buffer_input(
       && position.y > 1.0 && position.y < 23.0
       {
         
-        // if PlayerPosition::mode() != ComponentSyncMode::Full { return; }
-
+        if <Components as SyncMetadata<PlayerPosition>>::mode() != ComponentSyncMode::Full {
+          return;
+        }
+        
         for input in input_reader.read() {
           if let Some(input) = input.input() {
             
@@ -519,12 +525,12 @@ pub(crate) fn buffer_input(
             exit.send(bevy::app::AppExit);
           }
         }
-
+        
         // start timer once
         if position.x > 24.0 && quit_timer.is_none() {
           *quit_timer = Some(Timer::from_seconds(2.0, TimerMode::Once));
         }
-
+        
       }
     }
   }
@@ -573,7 +579,7 @@ pub(crate) fn buffer_input(
           };
           gizmos.circle(look_at_target, normal, radius(0.5), Color::RED);
         }
-
+        
       }
     }
   }

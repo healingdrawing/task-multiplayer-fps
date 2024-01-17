@@ -52,7 +52,7 @@ fn strict_angle_degrees(angle_degrees: f32, appendix_degrees:f32) -> f32 {
 }
 
 pub(crate) fn shared_movement_behaviour(
-  position: &mut PlayerPosition,
+  mut position: Mut<PlayerPosition>,
   input: &Inputs,
 ) {
   match input {
