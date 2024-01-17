@@ -13,6 +13,7 @@ use bevy_egui::EguiPlugin;
 // gltf
 use bevy::pbr::CascadeShadowConfigBuilder;
 use bevy::pbr::DirectionalLightShadowMap;
+use gui::fps::show_fps::force_sleep;
 use serde::de;
 use std::f32::consts::*;
 use bevy::render::camera::ScalingMode;
@@ -101,6 +102,8 @@ async fn main() {
   
   let mut app = App::new();
   
+  app.add_systems(FixedUpdate, force_sleep);
+
   // INJECTION fps on screen etc. Later can move to setup(), when it will be more clear
   /*
   app.add_plugins((

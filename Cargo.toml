@@ -10,7 +10,7 @@ bevy = { version = "0.12.1", features = ["bevy_core_pipeline"] }
 bevy_framepace = "0.14.1"
 bevy_egui = "0.24.0"
 # bevy_async_system = "0.1.1"
-lightyear = { version = "0.6.1", features = ["webtransport"] }
+lightyear = { version = "0.7.0", features = ["webtransport"] }
 serde = { version = "1.0.188", features = ["derive"] }
 anyhow = { version = "1.0.75", features = [] }
 tracing = "0.1"

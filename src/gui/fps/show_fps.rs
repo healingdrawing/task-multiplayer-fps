@@ -27,5 +27,10 @@ pub fn show_fps_ui(
 
 // try fix ticks issue
 pub fn limit_fps_ui(mut settings: ResMut<FramepaceSettings>){
-  settings.limiter = Limiter::from_framerate(60.0);
+  settings.limiter = Limiter::from_framerate(59.0);
+}
+
+// force slowdown gap
+pub fn force_sleep(){
+  std::thread::sleep(std::time::Duration::from_millis(5));
 }
