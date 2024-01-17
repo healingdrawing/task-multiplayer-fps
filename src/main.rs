@@ -102,7 +102,7 @@ async fn main() {
   
   let mut app = App::new();
   
-  app.add_systems(FixedUpdate, force_sleep);
+  // app.add_systems(FixedUpdate, force_sleep);
 
   app.insert_resource(KeyStates::default() );
   
@@ -194,9 +194,9 @@ fn setup(app: &mut App, cli: Cli) {
         
         // app.add_plugins(DefaultPlugins.build().disable::<LogPlugin>());
         
-        app.insert_resource(WinitSettings::game()); // try fix ticks issue
-        app.add_plugins(FramepacePlugin); // try fix ticks issue
-        app.add_systems(Startup, limit_fps_ui);
+        // app.insert_resource(WinitSettings::game()); // try fix ticks issue
+        // app.add_plugins(FramepacePlugin); // try fix ticks issue
+        // app.add_systems(Startup, limit_fps_ui);
         
       } else {
         app.add_plugins(MinimalPlugins);
@@ -240,9 +240,9 @@ fn setup(app: &mut App, cli: Cli) {
         FrameTimeDiagnosticsPlugin::default(),
       ));
       
-      app.insert_resource(WinitSettings::game()); // try fix ticks issue
-      app.add_plugins(FramepacePlugin); // try fix ticks issue
-      app.add_systems(Startup, limit_fps_ui);
+      // app.insert_resource(WinitSettings::game()); // try fix ticks issue
+      // app.add_plugins(FramepacePlugin); // try fix ticks issue
+      // app.add_systems(Startup, limit_fps_ui);
       
       app.insert_resource(ClearColor(Color::rgb(0.0, 0.0, 0.0)));
       app.add_systems(
