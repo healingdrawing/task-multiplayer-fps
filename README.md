@@ -68,5 +68,5 @@ If port number ends with 3, game will start with level 3 map.
  
 
 ## Authors
-- [healingdrawing](https://healingdrawing.github.io/)  
 - [blueskiy01](https://github.com/blueskiy01)  
+- [healingdrawing](https://healingdrawing.github.io/)  
