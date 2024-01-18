@@ -9,7 +9,7 @@ For details see [task and audit questions](https://github.com/01-edu/public/tree
 
 
 ## Requirements
-- properly installed [rust](https://www.rust-lang.org). Version `1.74.1` used for development.  
+- Properly installed [rust](https://www.rust-lang.org). Version `1.74.1` used for development.  
 
 
 ## How to run
@@ -55,6 +55,9 @@ Name : Unique name (Don’t use same on client and server)
 terminal: `ipconfig getifaddr en1`  
 
 ### Computer 2
+### Build `hybrid` executable for server and client
+terminal: `./do`  
+
 ### Run client  
 terminal: `./hybrid client`  
 Type : network IP from Computer 1 , with port. Example :  
@@ -62,11 +65,20 @@ Type : network IP from Computer 1 , with port. Example :
 
 Name : Unique Name (Don’t use same on client and server)  
 
-### Game levels
+### Game levels 
 Game begins on level 1 by default. With the exception of :  
 If port number ends with 2, game will start with level 2 map.  
-If port number ends with 3, game will start with level 3 map.  
- 
+If port number ends with 3, game will start with level 3 map.   
+#### Example:
+terminal: `./hybrid server`  
+
+Type :  127.0.0.1:8002 (level 2)   
+Type :  127.0.0.1:8003 (level 3)  
+
+### Instructions on gameplay 
+- Use arrow keys to move around.
+- Use Space bar to shoot.
+- Enemy should be outside of spawn cell to be eliminated by a shot.
 
 ## Authors
 - [blueskiy01](https://github.com/blueskiy01)  
