@@ -103,10 +103,13 @@ pub fn mutate_to_id(name: &str) -> u16 {
   id
 }
 
-/// check if the name started from 1 or 2 or 3, otherwise return random 1 or 2 or 3
+/// get the level number from the port last digit "2" -> 2 , "3" -> 3 , otherwise -> 1
 /// 
-/// used only for server init,
-/// then the server send to client the level number, to render the gltf model
+/// used to determine the level map to use.
+/// 
+/// Client will load the gltf according this level number.
+/// 
+/// Server will use level 2d map according this level number, to check which cells are free to move.
 pub fn mutate_to_level(port: &str) -> u8 {
   let level;
   if port.ends_with("3") { level = 3; }
