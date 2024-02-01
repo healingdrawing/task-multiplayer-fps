@@ -1,0 +1,48 @@
+Summary game based on boilerplate code based on "Bevy" game engine and bevy network game library "Lightyear".
+
+At the beginning moment game boilerplate code looked like black screen with 2d camera displayed square moving by wasd, for every connected client/player.
+
+In process of server development, server was simplified to tiny window, to decrease CPU usage.
+
+In process of client development:
+
+- default 2d camera was replaced by 3d camera with perspective projection to display level in front of player.
+--main.rs 292--
+With "MyCameraMarker", to get camera later using query and move the camera.
+--client.rs 468--
+
+- Second 3d camera with orthogonal projection was added to display minimap.
+--main.rs 333--
+
+- The "w a s d" keys were changed to arrows.
+--client.rs 144--
+
+player movement was changed to move in 3d space.
+--shared.rs 54-- calculate changes
+--shared.rs 92-- apply changes
+
+Player position was changed from 2d to 3d. z coordinate used to store angle of player rotation. We do not jump so z value is 0.
+--protocol.rs 47--
+
+- The "Space" key was refactored to make player attack the enemy using teleportation outside of the level.
+--client.rs 187--
+--shared.rs 112--
+
+- To prevent spamming, and decrease network loading, arrows and "Space" keys were refactored to send signals after release the key.
+--client.rs 122--
+
+- To 3d world was added duplicated 3d models of the level
+--main.rs 385-- for player camera
+--main.rs 390-- for minimap camera
+
+, and 3d models of players.
+--client.rs 318--
+
+3d models was made in blender, and exported as gltf files of "assets" folder.
+Also direct light and ambient light were added.
+--main.rs 356--
+
+- after player affected by shot, it teleports outside of the level, on server side it manage all the clients
+--server.rs 133--
+and then disappears with closing connection and removing from the game world (with few seconds delay).
+--client.rs 512--
