@@ -1,0 +1,54 @@
+1. - how implemented the fps counter?
+
+fps counter implemeted using bevy_egui library
+--show_fps.rs 6--
+and added into game(bevy application) as system
+--main.rs 251--
+Every schedule step/update fps recalculated from diagnostic
+
+------------------
+
+2. - what means first x4 lines/commands block in main.rs file?
+
+These commands allow to mute warnings in the code.
+The Bevy itself and especially lightyear is actively developed
+it is only alpha version of lightyear, so methods changed very often
+and to maintainer added these commands to prevent spam in terminal.
+And we use them for the same purposes. Later after v1+ release of lightyear
+code can become more stable and these commands can be not needed anymore.
+
+------------------
+
+3. - what means the changing number on the window title?
+
+Elapsed time in seconds demonstrated in window title. Implemented as system
+--show_time.rs 5--
+and added into game(bevy application)
+--main.rs 252--
+
+------------------
+
+4. - How implemented filtering of the players not displayed on minimap?
+
+No need filtering, because minimap it is just the second copy of the level
+placed on the left from main copy of the level(where player camera moving).
+Marker of the player displayed with playerPosition.x-25, y and z(0) without changes.
+--client.rs 358--
+Second camera look at this copy of the level from the top. And render into window,
+scaled minimap
+--main.rs 334--
+
+------------------
+
+5. what the main difference between run client and run server?
+
+In case of server the MyServerPlugin will be used
+--main.rs 173--
+In case of client the MyClientPlugin will be used
+--main.rs 217--
+
+------------------
+
+6. Where implemented the managing of user input to set ip:port, name, level?
+
+--main.rs 67--
