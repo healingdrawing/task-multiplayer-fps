@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   sodipodi:docname="scheme.svg"
+   inkscape:export-filename="scheme.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#fbfaf2"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="false"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#3f3f3f"
+     inkscape:document-units="px"
+     labelstyle="default"
+     inkscape:zoom="1.0527344"
+     inkscape:cx="475.90352"
+     inkscape:cy="1022.1002"
+     inkscape:window-width="1536"
+     inkscape:window-height="840"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2"
+     showgrid="false"
+     showborder="true"
+     inkscape:clip-to-page="false"
+     showguides="true"
+     guidecolor="#ffffff"
+     guideopacity="0.6"
+     inkscape:export-bgcolor="#ffffffff">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#e5e500"
+       empopacity="0.30196078"
+       color="#e5e500"
+       opacity="0.14901961"
+       empspacing="4"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <color-profile
+       name="Compatible-with-Adobe-RGB-1998"
+       xlink:href="file:///usr/share/color/icc/colord/AdobeRGB1998.icc"
+       id="color-profile2" />
+    <marker
+       style="overflow:visible"
+       id="Triangle-5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-3-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-7-4" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 70.534033,181.32221 70.724427,-1.36766 -0.92562,-52.79682 -7.70827,0.83401 c 0.27045,9.06175 -17.58538,9.82145 -18.14584,1.10934 l -19.437811,-0.80282 c -3.709386,10.18464 -18.622447,6.77683 -17.98021,-0.0179 l -7.788829,0.16123 z"
+       id="path1"
+       sodipodi:nodetypes="ccccccccc" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect5"
+       width="63.554604"
+       height="33.828686"
+       x="110.65201"
+       y="61.731941" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect6"
+       width="62.2943"
+       height="37.183674"
+       x="40.952347"
+       y="61.608047" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect6-5"
+       width="83.449059"
+       height="56.760307"
+       x="2.2924557"
+       y="197.01669" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect6-2"
+       width="112.05132"
+       height="53.407261"
+       x="92.405952"
+       y="190.06374" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 69.982801,98.470396 h 20.90087 c 0,0 0.0849,9.138354 -10.49609,9.456704 -10.58096,0.31835 -10.40478,-9.456704 -10.40478,-9.456704 z"
+       id="path6"
+       sodipodi:nodetypes="cczc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 32.270187,14.552084 h 20.90087 c 0,0 0.0849,9.138352 -10.49609,9.456702 -10.58096,0.31835 -10.40478,-9.456702 -10.40478,-9.456702 z"
+       id="path6-1"
+       sodipodi:nodetypes="cczc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 124.46624,95.015748 h 20.90087 c 0,0 0.0849,9.138352 -10.49609,9.456702 -10.58096,0.31835 -10.40478,-9.456702 -10.40478,-9.456702 z"
+       id="path6-5"
+       sodipodi:nodetypes="cczc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 70.788236,153.14829 69.035824,0"
+       id="path7"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 109.32836,148.51848 v 32.73644"
+       id="path8" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;paint-order:markers stroke fill"
+       id="path9"
+       cx="106.34048"
+       cy="152.59883"
+       rx="23.38582"
+       ry="10.629698" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#ededed;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="59.838169"
+       y="18.652443"
+       id="text13"><tspan
+         sodipodi:role="line"
+         id="tspan13"
+         style="stroke-width:0.264583"
+         x="59.838169"
+         y="18.652443" /></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;marker-end:url(#Triangle);paint-order:markers stroke fill"
+       d="m 82.431866,112.44675 4.382898,15.84312"
+       id="path21"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;marker-end:url(#Triangle-3);paint-order:markers stroke fill"
+       d="M 49.329844,195.39907 66.198986,184.01345"
+       id="path21-2" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;marker-end:url(#Triangle-3-7);paint-order:markers stroke fill"
+       d="M 161.59616,188.7457 147.12932,174.43098"
+       id="path21-2-0" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05833;stroke-opacity:1;marker-end:url(#Triangle-5);paint-order:markers stroke fill"
+       d="m 131.78492,109.70364 -6.89394,18.15411"
+       id="path21-5"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="text">
+    <g
+       id="g2"
+       transform="translate(-8.2173096,116.19856)">
+      <text
+         xml:space="preserve"
+         style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+         x="102.74814"
+         y="136.009"
+         id="text8-0-6"><tspan
+           sodipodi:role="line"
+           id="tspan8-6-4"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="136.009">to synthetically affect fps,</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="142.78233"
+           id="tspan44">for development needs or debug</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="149.55566"
+           id="tspan49" /><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="156.32899"
+           id="tspan93">example of adding a system</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="163.10231"
+           id="tspan50">app.add_systems(</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="169.87564"
+           id="tspan51"> Startup, limit_fps_ui</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="176.64897"
+           id="tspan52">)</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="183.4223"
+           id="tspan45" /><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="102.74814"
+           y="190.19563"
+           id="tspan46" /></text>
+    </g>
+    <g
+       id="g1-8"
+       transform="translate(-7.6634474,14.689426)">
+      <text
+         xml:space="preserve"
+         style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-align:center;text-decoration-color:#000000;word-spacing:-1.05833px;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+         x="115.90617"
+         y="135.43312"
+         id="text8-79"><tspan
+           sodipodi:role="line"
+           id="tspan8-2"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.90617"
+           y="135.43312">game</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.90617"
+           y="142.20645"
+           id="tspan11">(bevy app)</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="92.627914"
+       y="139.86928"
+       id="text8"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="92.627914"
+         y="139.86928">plugins</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="48.225903"
+       y="72.664589"
+       id="text8-9"><tspan
+         sodipodi:role="line"
+         id="tspan8-3"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="48.225903"
+         y="72.664589">MyClientPlugin</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-align:center;text-decoration-color:#000000;word-spacing:-1.05833px;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="106.99977"
+       y="9.8243618"
+       id="text8-9-0"><tspan
+         sodipodi:role="line"
+         id="tspan8-3-6"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="9.8243618">impl Plugin for MyServerPlugin</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="16.597691"
+         id="tspan14">impl Plugin for MyClientPlugin</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="23.371019"
+         id="tspan15" /><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="30.144348"
+         id="tspan17">After this addition bevy can try</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="36.917675"
+         id="tspan18">connect structs as bevy plugins</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="43.691006"
+         id="tspan47" /><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="50.464333"
+         id="tspan48">example of adding a plugin</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="106.99977"
+         y="57.237659"
+         id="tspan92">app.add_plugins(client_plugin)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="118.91757"
+       y="72.265762"
+       id="text8-9-8"><tspan
+         sodipodi:role="line"
+         id="tspan8-3-4"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="118.91757"
+         y="72.265762">MyServerPlugin</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="73.512665"
+       y="169.37219"
+       id="text8-7"><tspan
+         sodipodi:role="line"
+         id="tspan8-0"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="73.512665"
+         y="169.37219">resources</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-align:center;text-decoration-color:#000000;word-spacing:-1.05833px;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="34.685543"
+       y="120.64425"
+       id="text8-7-8"><tspan
+         sodipodi:role="line"
+         id="tspan8-0-7"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="120.64425">game(app) created</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="127.41757"
+         id="tspan53">f.e. in main.rs,</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="134.1909"
+         id="tspan56">configured using</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="140.96423"
+         id="tspan67" /><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="147.73756"
+         id="tspan57">plugins, resources,</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="154.51089"
+         id="tspan68">systems</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="161.28423"
+         id="tspan55">(created or imported</tspan><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="34.685543"
+         y="168.05754"
+         id="tspan76">in advance)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="2.6792998"
+       y="261.34161"
+       id="text8-7-0"><tspan
+         sodipodi:role="line"
+         id="tspan8-0-6"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="2.6792998"
+         y="261.34161">to get booleans using</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="2.6792998"
+         y="268.11493"
+         id="tspan38">query as bevy resource</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="2.6792998"
+         y="274.88828"
+         id="tspan27">for pressed keys and</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="2.6792998"
+         y="281.66159"
+         id="tspan28">control when send</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="2.6792998"
+         y="288.43494"
+         id="tspan43">signal to server</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="2.6792998"
+         y="295.20825"
+         id="tspan31">about user actions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="4.4761825"
+       y="206.91948"
+       id="text8-7-4"><tspan
+         sodipodi:role="line"
+         id="tspan8-0-3"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="206.91948">#[derive(Resource,...)]</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="213.69281"
+         id="tspan88">pub struct KeyStates {</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="220.46614"
+         id="tspan21">  up: bool,</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="227.23947"
+         id="tspan22">  down: bool,</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="234.01279"
+         id="tspan23">  left: bool,</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="240.78612"
+         id="tspan24">  right: bool,</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="247.55945"
+         id="tspan25">  shot: bool,</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="4.4761825"
+         y="254.33278"
+         id="tspan26">}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#ededed;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="124.0479"
+       y="172.19978"
+       id="text9"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="stroke-width:0.264583"
+         x="124.0479"
+         y="172.19978" /></text>
+    <g
+       id="g1"
+       transform="translate(9.4045976,29.397921)">
+      <text
+         xml:space="preserve"
+         style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+         x="103.67453"
+         y="139.86928"
+         id="text8-0"><tspan
+           sodipodi:role="line"
+           id="tspan8-6"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="139.86928">systems</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#ededed;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="109.47654"
+       y="156.12164"
+       id="text10"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         style="stroke-width:0.264583"
+         x="109.47654"
+         y="156.12164" /></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#ededed;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="73.863304"
+       y="65.841194"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan12"
+         style="stroke-width:0.264583"
+         x="73.863304"
+         y="65.841194" /></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#ededed;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="132.6422"
+       y="222.14743"
+       id="text32"><tspan
+         sodipodi:role="line"
+         id="tspan32"
+         style="stroke-width:0.264583"></tspan></text>
+    <g
+       id="g34"
+       transform="translate(-7.4685035,58.586056)">
+      <text
+         xml:space="preserve"
+         style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+         x="103.67453"
+         y="139.86928"
+         id="text34"><tspan
+           sodipodi:role="line"
+           id="tspan34"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="139.86928">pub fn limit_fps_ui(</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="146.64261"
+           id="tspan37"> mut settings:</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="153.41594"
+           id="tspan39">  ResMut&lt;FramepaceSettings&gt;</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="160.18927"
+           id="tspan40">){</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="166.96259"
+           id="tspan35">  settings.limiter =</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="173.73592"
+           id="tspan41">Limiter::from_framerate(59.0);</tspan><tspan
+           sodipodi:role="line"
+           style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="103.67453"
+           y="180.50925"
+           id="tspan36">}</tspan></text>
+    </g>
+    <g
+       id="g77"
+       transform="translate(60.782804,-18.084115)">
+      <text
+         xml:space="preserve"
+         style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-align:center;text-decoration-color:#000000;word-spacing:-1.05833px;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+         x="115.01562"
+         y="141.35016"
+         id="text77"><tspan
+           sodipodi:role="line"
+           id="tspan77"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="141.35016">after that app parts</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="148.12349"
+           id="tspan78">updated every tick</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="154.89682"
+           id="tspan79">or according to</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="161.67015"
+           id="tspan80">schedule</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="168.44347"
+           id="tspan81">f.e. Startup means</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="175.2168"
+           id="tspan82">execute once at the</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="181.99013"
+           id="tspan83">beginning of app</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="188.76346"
+           id="tspan84">execution</tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#020202;fill-opacity:1;stroke-width:0.264583"
+           x="115.01562"
+           y="195.53679"
+           id="tspan85" /></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="5.6870308"
+       y="187.96425"
+       id="text89"><tspan
+         sodipodi:role="line"
+         id="tspan89"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="5.6870308"
+         y="187.96425">resource</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="5.6870308"
+         y="194.73758"
+         id="tspan90">example</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:5.64444px;line-height:1.2;font-family:'Fira Code';-inkscape-font-specification:'Fira Code Medium';text-decoration-color:#000000;word-spacing:-1.05833px;fill:#020202;fill-opacity:1;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stop-color:#000000"
+       x="171.00746"
+       y="181.01497"
+       id="text89-2"><tspan
+         sodipodi:role="line"
+         id="tspan89-2"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="171.00746"
+         y="181.01497">system</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#020202;fill-opacity:1;stroke-width:0.264583"
+         x="171.00746"
+         y="187.7883"
+         id="tspan91">example</tspan></text>
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="https://healingdrawing.github.io/info/license/fpl.html" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
